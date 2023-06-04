@@ -6,76 +6,75 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
- * Game represents a Nim game with 1 pile of sticks.
- * This class was started by CS6910
+ * Game represents a Nim game with 1 pile of sticks. This class was started by
+ * CS6910
+ * 
+ * @author Justin Maxwell
  */
 public class Game implements Observable {
 	/** Constant to define the initial pile size */
 	public static final int INITIAL_PILE_SIZE = 7;
-	
-	/** Constant to define the maximum number of sticks to be
-	 *  removed per turn */
+
+	/**
+	 * Constant to define the maximum number of sticks to be removed per turn
+	 */
 	public static final int MAX_STICKS_PER_TURN = 3;
 
 	private HumanPlayer theHuman;
 	private ComputerPlayer theComputer;
 
-	private ObjectProperty<Player> currentPlayerObject;	
-	
+	private ObjectProperty<Player> currentPlayerObject;
+
 	private Pile thePile;
 
 	/**
-	 * Creates a nim Game with the specified Players and a pile
-	 * of INITIAL_PILE_SIZE sticks.
+	 * Creates a nim Game with the specified Players and a pile of INITIAL_PILE_SIZE
+	 * sticks.
 	 * 
-	 * @param theComputer
-	 *            the automated player
-	 * @param theHuman
-	 *            the human player
+	 * @param theComputer the automated player
+	 * @param theHuman    the human player
 	 * 
 	 * @require theHuman != null && theComputer != null
 	 * 
-	 * @ensure humanPlayer().equals(theHuman) &&
-	 *         computerPlayer.equals(theComputer) &&
-	 *         sticksLeft() == INITIAL_PILE_SIZE
+	 * @ensure humanPlayer().equals(theHuman) && computerPlayer.equals(theComputer)
+	 *         && sticksLeft() == INITIAL_PILE_SIZE
 	 */
 	public Game(HumanPlayer theHuman, ComputerPlayer theComputer) {
 		this.theHuman = theHuman;
 		this.theComputer = theComputer;
 
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
-		
+
 		this.thePile = new Pile(INITIAL_PILE_SIZE);
 	}
 
 	/**
 	 * Initializes the game for play.
 	 * 
-	 * @param firstPlayer 	the Player who takes the first turn
+	 * @param firstPlayer the Player who takes the first turn
 	 * 
-	 * @require firstPlayer != null && 
+	 * @require firstPlayer != null &&
 	 * 
-	 * @ensures whoseTurn().equals(firstPlayer) &&
-	 * 			sticksLeft() == INITIAL_PILE_SIZE
+	 * @ensures whoseTurn().equals(firstPlayer) && sticksLeft() == INITIAL_PILE_SIZE
 	 */
 	public void startNewGame(Player firstPlayer) {
-		this.currentPlayerObject.setValue(firstPlayer); 
+		this.currentPlayerObject.setValue(firstPlayer);
 
 		this.thePile = new Pile(INITIAL_PILE_SIZE);
 	}
 
 	/**
-	 * Conducts a move in the game, allowing the appropriate Player to
-	 * take a turn. Has no effect if the game is over.
+	 * Conducts a move in the game, allowing the appropriate Player to take a turn.
+	 * Has no effect if the game is over.
 	 * 
 	 * @requires !isGameOver()
 	 * 
-	 * @ensures !whoseTurn().equals(whoseTurn()@prev) &&
-	 * 			sticksLeft() < sticksLeft()@prev
+	 * @ensures !whoseTurn().equals(whoseTurn()@prev) && sticksLeft() <
+	 *          sticksLeft()@prev
 	 */
 	public void play() {
 		// TODO: 1. Tell the current player to take its turn.
-		//		 2. Swap whose turn it is.
+		// 2. Swap whose turn it is.
 
 		this.isGameOver();
 	}
@@ -97,11 +96,11 @@ public class Game implements Observable {
 	public ComputerPlayer getComputerPlayer() {
 		return this.theComputer;
 	}
-	
+
 	/**
 	 * Returns the Player whose turn it is.
 	 * 
-	 * @return	the current Player
+	 * @return the current Player
 	 */
 	public Player getCurrentPlayer() {
 		return this.currentPlayerObject.getValue();
@@ -121,22 +120,22 @@ public class Game implements Observable {
 	 * 
 	 * @return true iff sticksLeft() <= 1
 	 */
-	public boolean isGameOver() {		
+	public boolean isGameOver() {
 		return this.thePile.getSticksLeft() <= 1;
 	}
-	
+
 	/**
 	 * Returns the Pile used in this Game.
 	 * 
-	 * @return	the Pile
+	 * @return the Pile
 	 */
 	public Pile getPile() {
 		return this.thePile;
 	}
 
 	/**
-	 * Returns a String representing the pile size, or, if
-	 * the game is over, the name of the winner.
+	 * Returns a String representing the pile size, or, if the game is over, the
+	 * name of the winner.
 	 * 
 	 * @return a String representation of this Game
 	 */
@@ -145,7 +144,7 @@ public class Game implements Observable {
 		if (!this.isGameOver()) {
 			return " Pile size: " + this.thePile.getSticksLeft();
 		}
-		
+
 		String result = "Game over! Winner: ";
 		if (this.currentPlayerObject.getValue() == this.theComputer) {
 			result += this.theHuman.getName();
@@ -156,8 +155,8 @@ public class Game implements Observable {
 	}
 
 	private void swapWhoseTurn() {
-		// TODO: Swap the players so that the other player becomes 
-		//       the current player. 
+		// TODO: Swap the players so that the other player becomes
+		// the current player.
 
 	}
 

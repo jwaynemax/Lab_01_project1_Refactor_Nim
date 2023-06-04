@@ -5,6 +5,7 @@ import edu.westga.cs6910.nim.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -14,6 +15,7 @@ import javafx.scene.layout.Pane;
  * Defines a GUI for the 1-pile Nim game.
  * This class was started by CS6910
  * 
+ * @author Justin Maxwell
  */
 public class NimPane extends BorderPane {
 	private Game theGame;
@@ -43,12 +45,30 @@ public class NimPane extends BorderPane {
 		//			Create an HBox with the appropriate style, then
 		//			make a human player pane and add it to the HBox.
 		//			Finally add the HBox to the content pane	
+		HBox leftBox = new HBox();
+		leftBox.getStyleClass().add("pane-border");
+		this.pnHumanPlayer = new HumanPane(theGame);
+		leftBox.getChildren().add(this.pnHumanPlayer);
+		this.pnContent.setLeft(leftBox);
 		
 		// TODO: 2. Using the other panes as a guide, create
-		//			and add a status pane	
+		//			and add a status pane
+		
+		HBox centerBox = new HBox();
+		centerBox.getStyleClass().add("pane-border");
+		this.pnGameInfo = new StatusPane(theGame);
+		centerBox.getChildren().add(this.pnGameInfo);
+		this.pnContent.setCenter(centerBox);
+
 		
 		// TODO: 3. Using the other panes as a guide, create
 		//			and add a computer pane
+		
+		HBox rightBox = new HBox();
+		rightBox.getStyleClass().add("pane-border");
+		this.pnComputerPlayer = new ComputerPane(theGame);
+		rightBox.getChildren().add(this.pnComputerPlayer);
+		this.pnContent.setRight(rightBox);
 
 		this.setCenter(this.pnContent);
 	}
@@ -89,11 +109,18 @@ public class NimPane extends BorderPane {
 			
 			// TODO: Instantiate the computer player button and set 
 			//		its action listener.
+			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");	
+			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
+			
 			
 			// TODO: Create a ToggleGroup and add the 2 radio buttons to it.
+			ToggleGroup tg = new ToggleGroup();
+			this.radHumanPlayer.setToggleGroup(tg);
+			this.radComputerPlayer.setToggleGroup(tg);
 			
 			// TODO: Add the 2 radio buttons to this pane.
-		
+			this.getChildren().add(radHumanPlayer);
+			this.getChildren().add(radComputerPlayer);
 		}
 		
 		/* 
