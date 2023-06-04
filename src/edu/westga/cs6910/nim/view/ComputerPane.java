@@ -7,6 +7,7 @@ import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -16,6 +17,7 @@ import javafx.scene.layout.GridPane;
  * player took on its turn.
  * This class was started by CS6910
  * 
+ * @author Justin Maxwell
  */
 public class ComputerPane extends GridPane implements InvalidationListener {
 	private Game theGame;
@@ -30,18 +32,32 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	 * 
 	 * @requires 	theGame != null
 	 */
-	public ComputerPane(Game theGame) {
-		this.theGame = theGame;
-		
+	public ComputerPane(Game theGame) {		
+		//DONE
 		// TODO: Add this object as an listener of the Game.
-		
+		this.theGame = theGame;
+		this.theGame.addListener(this);
+				
 		this.theComputer = this.theGame.getComputerPlayer();
 		
 		this.buildPane();
 	}
 	
 	private void buildPane() {
+		//DONE??
 		// TODO: Using the other pane classes as a model, build this pane.
+		
+		this.add(new Label("~~ " + this.theComputer.getName() + " ~~"), 0, 0);
+		
+		this.add(new Label("Number of sticks taken: "), 0, 1);
+		
+		this.lblNumberTaken = new Label();
+		this.add(this.lblNumberTaken, 1, 1);
+		
+		this.btnTakeTurn = new Button("Take Turn");
+		this.btnTakeTurn.setOnAction(new TakeTurnListener());
+		this.add(this.btnTakeTurn, 0, 2);
+		
 
 	}
 
