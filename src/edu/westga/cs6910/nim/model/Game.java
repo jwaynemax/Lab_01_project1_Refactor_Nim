@@ -157,7 +157,13 @@ public class Game implements Observable {
 	private void swapWhoseTurn() {
 		// TODO: Swap the players so that the other player becomes
 		// the current player.
-
+		if (!this.isGameOver()) {
+			if (this.currentPlayerObject.getValue() == this.theComputer) {
+				this.
+			} else {
+				result += this.theComputer.getName();
+			}
+		}
 	}
 
 	@Override
