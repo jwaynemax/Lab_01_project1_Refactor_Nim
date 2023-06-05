@@ -51,7 +51,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		
 		this.add(new Label("Number of sticks taken: "), 0, 1);
 		
-		this.lblNumberTaken = new Label();
+		this.lblNumberTaken = new Label(Integer.toString(this.theComputer.getSticksOnThisTurn()));
 		this.add(this.lblNumberTaken, 1, 1);
 		
 		this.btnTakeTurn = new Button("Take Turn");
