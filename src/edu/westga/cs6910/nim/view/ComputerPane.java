@@ -44,7 +44,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	}
 	
 	private void buildPane() {
-		//DONE??
+		//DONE
 		// TODO: Using the other pane classes as a model, build this pane.
 		
 		this.add(new Label("~~ " + this.theComputer.getName() + " ~~"), 0, 0);
@@ -71,7 +71,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		boolean myTurn = this.theGame.getCurrentPlayer() == this.theComputer;
 		
 		if (!myTurn) {
-			//DONE??
+			//DONE
 			// TODO: Set the user interface to show the number of
 			// sticks taken by the computer player.
 			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
