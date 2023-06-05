@@ -73,8 +73,12 @@ public class Game implements Observable {
 	 *          sticksLeft()@prev
 	 */
 	public void play() {
+		// DONE
 		// TODO: 1. Tell the current player to take its turn.
 		// 2. Swap whose turn it is.
+
+		this.currentPlayerObject.getValue().takeTurn();
+		this.swapWhoseTurn();
 
 		this.isGameOver();
 	}
@@ -155,15 +159,15 @@ public class Game implements Observable {
 	}
 
 	private void swapWhoseTurn() {
+		// DONE
 		// TODO: Swap the players so that the other player becomes
 		// the current player.
-		if (!this.isGameOver()) {
-			if (this.currentPlayerObject.getValue() == this.theComputer) {
-				this.
-			} else {
-				result += this.theComputer.getName();
-			}
+		if (this.currentPlayerObject.getValue() == this.theComputer) {
+			this.currentPlayerObject.setValue(this.theHuman);
+		} else {
+			this.currentPlayerObject.setValue(this.theComputer);
 		}
+
 	}
 
 	@Override

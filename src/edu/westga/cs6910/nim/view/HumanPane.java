@@ -39,6 +39,7 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		this.theHuman = this.theGame.getHumanPlayer();
 		
 		this.buildPane();
+		this.setDisable(true);
 	}
 	
 	private void buildPane() {

@@ -40,6 +40,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		this.theComputer = this.theGame.getComputerPlayer();
 		
 		this.buildPane();
+		this.setDisable(true);
 	}
 	
 	private void buildPane() {
