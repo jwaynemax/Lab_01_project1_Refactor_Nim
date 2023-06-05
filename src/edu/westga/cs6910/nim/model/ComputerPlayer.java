@@ -12,7 +12,7 @@ package edu.westga.cs6910.nim.model;
  * ComputerPlayer represents a very simple automated player in the game Nim.
  * It removes 1 stick at a time.
  * This class was started by CS6910
- * 
+ * @author Justin Maxwell
  */
 public class ComputerPlayer implements Player {
 	private static final String NAME = "Simple computer";

@@ -109,12 +109,13 @@ public class NimPane extends BorderPane {
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first");	
 			this.radHumanPlayer.setOnAction(new HumanFirstListener());
 			
+			//DONE
 			// TODO: Instantiate the computer player button and set 
 			//		its action listener.
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");	
 			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
 			
-			
+			//DONE
 			// TODO: Create a ToggleGroup and add the 2 radio buttons to it.
 			ToggleGroup tg = new ToggleGroup();
 			this.radHumanPlayer.setToggleGroup(tg);
@@ -122,8 +123,8 @@ public class NimPane extends BorderPane {
 			
 			//DONE
 			// TODO: Add the 2 radio buttons to this pane.
-			this.getChildren().add(radHumanPlayer);
-			this.getChildren().add(radComputerPlayer);
+			this.add(this.radHumanPlayer, 0,0);
+			this.add(this.radComputerPlayer, 1, 0);
 		}
 		
 		/* 
@@ -153,9 +154,11 @@ public class NimPane extends BorderPane {
 			@Override
 			public void handle(ActionEvent event) {
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
+				//DONE
 				// TODO: Enable the human player pane and start a game
 				//		 with the human playing first.
-
+				NimPane.this.pnHumanPlayer.setDisable(false);
+				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
 		}
 	}
