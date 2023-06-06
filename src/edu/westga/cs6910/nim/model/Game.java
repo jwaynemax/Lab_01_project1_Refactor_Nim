@@ -69,8 +69,7 @@ public class Game implements Observable {
 	 * 
 	 * @requires !isGameOver()
 	 * 
-	 * @ensures !whoseTurn().equals(whoseTurn()@prev) && sticksLeft() <
-	 *          sticksLeft()@prev
+	 * @ensures !whoseTurn().equals(whoseTurn()@prev) && sticksLeft() < sticksLeft()@prev
 	 */
 	public void play() {
 
