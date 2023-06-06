@@ -6,13 +6,13 @@ package edu.westga.cs6910.nim.model;
  * @author Justin Maxwell
  */
 public abstract class AbstractPlayer implements Player {
-	protected String name;
-	protected int sticksToTake;
-	protected Pile thePile;
+	private String name;
+	private int sticksToTake;
+	private Pile thePile;
 	
 	public AbstractPlayer(String name) {
-		this.name = name;
-		this.sticksToTake = 0;
+		this.setName(name);
+		this.setSticksToTake(0);
 	}
 	
 	/**
@@ -21,7 +21,7 @@ public abstract class AbstractPlayer implements Player {
 	 * @param aPile
 	 */	
 	public void setPileForThisTurn(Pile aPile) {
-		this.thePile = aPile;
+		this.setThePile(aPile);
 
 	}
 	
@@ -31,7 +31,7 @@ public abstract class AbstractPlayer implements Player {
 	 */	
 	public void takeTurn() {
 
-		this.thePile.removeSticks(this.sticksToTake);
+		this.getThePile().removeSticks(this.getSticksToTake());
 	}
 	
 	@Override
@@ -43,7 +43,7 @@ public abstract class AbstractPlayer implements Player {
 	 * @see Player#setNumberSticksToTake(int)
 	 */
 	public void setNumberSticksToTake(int number) {
-		this.sticksToTake = number;
+		this.setSticksToTake(number);
 	}
 	
 	@Override
@@ -73,7 +73,7 @@ public abstract class AbstractPlayer implements Player {
 	 * @see Player#getSticksOnThisTurn()
 	 */
 	public int getSticksOnThisTurn() {
-		return this.sticksToTake;
+		return this.getSticksToTake();
 	}
 
 	@Override
@@ -82,6 +82,26 @@ public abstract class AbstractPlayer implements Player {
 	 */
 
 	public Pile getPileForThisTurn() {
+		return this.getThePile();
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getSticksToTake() {
+		return this.sticksToTake;
+	}
+
+	public void setSticksToTake(int sticksToTake) {
+		this.sticksToTake = sticksToTake;
+	}
+
+	public Pile getThePile() {
 		return this.thePile;
+	}
+
+	public void setThePile(Pile thePile) {
+		this.thePile = thePile;
 	}
 }

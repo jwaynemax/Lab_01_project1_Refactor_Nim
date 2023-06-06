@@ -15,8 +15,8 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */
 	public ComputerPlayer() {
 		super(null);
-		super.name = NAME;
-		super.sticksToTake = 0;
+		setName(NAME);
+		setSticksToTake(0);
 	}
 	
 	@Override	
@@ -29,6 +29,6 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#setNumberSticksToTake()
 	 */
 	public void setNumberSticksToTake() {
-		this.sticksToTake = 1;
+		this.setSticksToTake(1);
 	}
 }

@@ -20,8 +20,8 @@ public class HumanPlayer extends AbstractPlayer {
 	 */
 	public HumanPlayer(String name) {
 		super(name);
-		super.name = name;
-		super.sticksToTake = 0;
+		setName(name);
+		setSticksToTake(0);
 	}
 	
 	@Override
@@ -36,7 +36,6 @@ public class HumanPlayer extends AbstractPlayer {
 	 * @see Player#setNumberSticksToTake()
 	 */
 	public void setNumberSticksToTake() {
-		this.sticksToTake = 
-				Math.min(this.thePile.getSticksLeft() - 1, Game.MAX_STICKS_PER_TURN);
+		this.setSticksToTake(Math.min(this.getThePile().getSticksLeft() - 1, Game.MAX_STICKS_PER_TURN));
 	}
 }
