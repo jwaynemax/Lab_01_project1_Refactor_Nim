@@ -40,30 +40,17 @@ public class NimPane extends BorderPane {
 
 		this.addFirstPlayerChooserPane(theGame);
 
-		// DONE
-		// TODO: 1. Using the 'first player chooser pane' as a guide
-		// Create an HBox with the appropriate style, then
-		// make a human player pane and add it to the HBox.
-		// Finally add the HBox to the content pane
 		HBox leftBox = new HBox();
 		leftBox.getStyleClass().add("pane-border");
 		this.pnHumanPlayer = new HumanPane(theGame);
 		leftBox.getChildren().add(this.pnHumanPlayer);
 		this.pnContent.setLeft(leftBox);
 
-		// DONE
-		// TODO: 2. Using the other panes as a guide, create
-		// and add a status pane
-
 		HBox centerBox = new HBox();
 		centerBox.getStyleClass().add("pane-border");
 		this.pnGameInfo = new StatusPane(theGame);
 		centerBox.getChildren().add(this.pnGameInfo);
 		this.pnContent.setCenter(centerBox);
-
-		// DONE
-		// TODO: 3. Using the other panes as a guide, create
-		// and add a computer pane
 
 		HBox rightBox = new HBox();
 		rightBox.getStyleClass().add("pane-border");
@@ -108,20 +95,13 @@ public class NimPane extends BorderPane {
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first");
 			this.radHumanPlayer.setOnAction(new HumanFirstListener());
 
-			// DONE
-			// TODO: Instantiate the computer player button and set
-			// its action listener.
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
 			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
 
-			// DONE
-			// TODO: Create a ToggleGroup and add the 2 radio buttons to it.
 			ToggleGroup tg = new ToggleGroup();
 			this.radHumanPlayer.setToggleGroup(tg);
 			this.radComputerPlayer.setToggleGroup(tg);
 
-			// DONE
-			// TODO: Add the 2 radio buttons to this pane.
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
 			
@@ -156,9 +136,6 @@ public class NimPane extends BorderPane {
 			@Override
 			public void handle(ActionEvent event) {
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
-				// DONE
-				// TODO: Enable the human player pane and start a game
-				// with the human playing first.
 				NimPane.this.pnHumanPlayer.setDisable(false);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
