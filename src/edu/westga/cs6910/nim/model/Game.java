@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleObjectProperty;
  * CS6910
  * 
  * @author Justin Maxwell
+ * @version Summer 2023
  */
 public class Game implements Observable {
 	/** Constant to define the initial pile size */

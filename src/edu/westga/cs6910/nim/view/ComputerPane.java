@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
  * This class was started by CS6910
  * 
  * @author Justin Maxwell
+ * @version Summer 2023
  */
 public class ComputerPane extends GridPane implements InvalidationListener {
 	private Game theGame;
@@ -52,8 +53,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		this.btnTakeTurn = new Button("Take Turn");
 		this.btnTakeTurn.setOnAction(new TakeTurnListener());
 		this.add(this.btnTakeTurn, 0, 2);
-		
-
 	}
 
 	@Override

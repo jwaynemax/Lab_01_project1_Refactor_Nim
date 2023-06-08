@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
  * Defines a GUI for the 1-pile Nim game. This class was started by CS6910
  * 
  * @author Justin Maxwell
+ * @version Summer 2023
  */
 public class NimPane extends BorderPane {
 	private Game theGame;

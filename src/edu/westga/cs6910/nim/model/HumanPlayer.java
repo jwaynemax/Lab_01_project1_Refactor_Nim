@@ -8,7 +8,6 @@ package edu.westga.cs6910.nim.model;
  */
 public class HumanPlayer extends AbstractPlayer {
 
-	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
 	 * 
