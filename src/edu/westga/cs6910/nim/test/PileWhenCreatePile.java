@@ -13,5 +13,18 @@ class PileWhenCreatePile {
 		Pile oneStickPile = new Pile(1);  
 		assertEquals("Pile size: 1",   oneStickPile.toString()); 
 	}
+	
+	@Test
+	public void testShouldThrowErrosSinceNegative() { 
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			int negativeStick = -2;
+			
+			Pile negativeValue = new Pile(negativeStick);
+			if (negativeValue.getSticksLeft() < 0) {
+				throw new IllegalArgumentException("Cannot be negative");
+			}
+	    });
+	}
 
 }
