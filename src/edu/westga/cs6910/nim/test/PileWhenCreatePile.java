@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.nim.model.Pile;
+
 class PileWhenCreatePile {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testShouldProducePileWith1Stick() { 
+		Pile oneStickPile = new Pile(1);  
+		assertEquals("Pile size: 1",   oneStickPile.toString()); 
 	}
 
 }
