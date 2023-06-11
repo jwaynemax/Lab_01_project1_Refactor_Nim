@@ -16,14 +16,14 @@ class PileWhenCreatePile {
 	
 	@Test
 	public void testShouldProducePileWith7Sticks() { 
-		Pile oneStickPile = new Pile(7);  
-		assertEquals("Pile size: 7",   oneStickPile.toString()); 
+		Pile sevenStickPile = new Pile(7);  
+		assertEquals("Pile size: 7",   sevenStickPile.toString()); 
 	}
 	
 	@Test
 	public void testShouldProducePileWith2Sticks() { 
-		Pile oneStickPile = new Pile(2);  
-		assertEquals("Pile size: 2",   oneStickPile.toString()); 
+		Pile twoStickPile = new Pile(2);  
+		assertEquals("Pile size: 2",   twoStickPile.toString()); 
 	}
 
 }
