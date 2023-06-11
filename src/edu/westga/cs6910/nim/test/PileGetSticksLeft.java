@@ -25,5 +25,4 @@ class PileGetSticksLeft {
 		Pile twoStickPile = new Pile(2);
 		assertEquals(2, twoStickPile.getSticksLeft());
 	}
-
 }
