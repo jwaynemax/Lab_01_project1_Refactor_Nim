@@ -15,16 +15,15 @@ class PileWhenCreatePile {
 	}
 	
 	@Test
-	public void testShouldThrowErrosSinceNegative() { 
-		
-		assertThrows(IllegalArgumentException.class, () -> {
-			int negativeStick = -2;
-			
-			Pile negativeValue = new Pile(negativeStick);
-			if (negativeValue.getSticksLeft() < 0) {
-				throw new IllegalArgumentException("Cannot be negative");
-			}
-	    });
+	public void testShouldProducePileWith7Sticks() { 
+		Pile oneStickPile = new Pile(7);  
+		assertEquals("Pile size: 7",   oneStickPile.toString()); 
+	}
+	
+	@Test
+	public void testShouldProducePileWith2Sticks() { 
+		Pile oneStickPile = new Pile(2);  
+		assertEquals("Pile size: 2",   oneStickPile.toString()); 
 	}
 
 }
