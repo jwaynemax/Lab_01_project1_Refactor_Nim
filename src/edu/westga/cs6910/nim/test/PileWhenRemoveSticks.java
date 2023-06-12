@@ -28,5 +28,4 @@ class PileWhenRemoveSticks {
 		tenStickPile.removeSticks(9);
 		assertEquals(1, tenStickPile.getSticksLeft());
 	}
-
 }
