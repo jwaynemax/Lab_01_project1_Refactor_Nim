@@ -10,7 +10,7 @@ import edu.westga.cs6910.nim.model.Pile;
 class ComputerPlayerSetPileForThisTurn {
 
 	@Test
-	void tesSetPileForThisTurn4() {
+	void testSetPileForThisTurn4() {
 		ComputerPlayer computer = new ComputerPlayer();	
 		Pile pile = new Pile(4);
 		computer.setPileForThisTurn(pile);
@@ -18,7 +18,7 @@ class ComputerPlayerSetPileForThisTurn {
 	}
 	
 	@Test
-	void tesSetPileForThisTurn1() {
+	void testSetPileForThisTurn1() {
 		ComputerPlayer computer = new ComputerPlayer();	
 		Pile pile = new Pile(1);
 		computer.setPileForThisTurn(pile);
@@ -26,11 +26,10 @@ class ComputerPlayerSetPileForThisTurn {
 	}
 	
 	@Test
-	void tesSetPileForThisTurn1000() {
+	void testSetPileForThisTurn1000() {
 		ComputerPlayer computer = new ComputerPlayer();	
 		Pile pile = new Pile(1000);
 		computer.setPileForThisTurn(pile);
 		assertEquals("Pile size: 1000", computer.getPileForThisTurn().toString());
 	}
-
 }
