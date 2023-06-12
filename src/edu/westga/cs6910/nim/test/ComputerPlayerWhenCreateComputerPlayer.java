@@ -10,9 +10,21 @@ class ComputerPlayerWhenCreateComputerPlayer {
 
 	@Test
 	void testCreateComputerPlayerName() {
-		ComputerPlayer getComputerName = new ComputerPlayer();
-		
+		ComputerPlayer getComputerName = new ComputerPlayer();		
 		assertEquals("Simple computer", getComputerName.getName());
+	}
+	
+	@Test
+	void testCreateComputerPlayerGetSticksToTake() {
+		ComputerPlayer getComputer = new ComputerPlayer();		
+		assertEquals(0, getComputer.getSticksToTake());
+	}
+	
+	@Test
+	void testCreateComputerPlayerGetPlayerWithNewName() {
+		ComputerPlayer getComputerName = new ComputerPlayer();	
+		getComputerName.setName("New Computer");
+		assertEquals("New Computer", getComputerName.getName());
 	}
 
 }
