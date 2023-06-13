@@ -9,29 +9,35 @@ import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
 import edu.westga.cs6910.nim.model.Pile;
 
-class GameWhenGetIsGameOver {
+class GameWhenGetHuman {
 
 	@Test
-	void  testBeforeGameStartsIsNotOver() {
+	void  testGetHumanPlayerWhenNewGame() {
 		ComputerPlayer computer = new ComputerPlayer();
 		HumanPlayer human = new HumanPlayer("Human");
 		Game game = new Game(human, computer);
 		
-		assertEquals(false, game.isGameOver());		
+		assertEquals("Human", game.getHumanPlayer().getName());		
 	}
 	
 	@Test
-	void  testGameIsOver() {
+	void  testGetHumanPlayerSticksToTake() {
 		ComputerPlayer computer = new ComputerPlayer();
 		HumanPlayer human = new HumanPlayer("Human");
 		Game game = new Game(human, computer);
-		Pile pile = new Pile(0);
-		
-		computer.setThePile(pile);
-		
-		System.out.println(game.getPile());
-		
-		assertEquals(false, game.isGameOver());		
+				
+		assertEquals(0, game.getHumanPlayer().getSticksToTake());		
+	}
+	
+	@Test
+	void  testSetPileSizeFromGameForHumanPlayere() {
+		ComputerPlayer computer = new ComputerPlayer();
+		HumanPlayer human = new HumanPlayer("Human");
+		Game game = new Game(human, computer);
+		Pile pile = new Pile(7);
+		human.setThePile(pile);
+				
+		assertEquals("Pile size: 7", game.getHumanPlayer().getThePile().toString());		
 	}
 
 }
