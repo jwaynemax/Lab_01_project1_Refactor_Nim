@@ -11,7 +11,7 @@ class ComputerPlayerGetAndSetName {
 	@Test
 	void testNewComputerPlayerName() {
 		ComputerPlayer computer = new ComputerPlayer();	
-		assertEquals("Simple Computer", computer.getName());
+		assertEquals("Simple computer", computer.getName());
 	}
 	
 	@Test
