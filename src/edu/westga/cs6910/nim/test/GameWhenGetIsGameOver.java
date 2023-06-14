@@ -22,16 +22,32 @@ class GameWhenGetIsGameOver {
 	
 	@Test
 	void  testGameIsOver() {
-		ComputerPlayer computer = new ComputerPlayer();
 		HumanPlayer human = new HumanPlayer("Human");
+		ComputerPlayer computer = new ComputerPlayer();
 		Game game = new Game(human, computer);
-		Pile pile = new Pile(0);
 		
-		computer.setThePile(pile);
 		
-		System.out.println(game.getPile());
+		game.startNewGame(computer);
+		computer.setPileForThisTurn(game.getPile());
+		computer.setSticksToTake(6);
+		game.play();		
 		
-		assertEquals(false, game.isGameOver());		
+		assertEquals(true, game.isGameOver());		
+	}
+
+	@Test
+	void  testGameIsOverToString() {
+		HumanPlayer human = new HumanPlayer("Human");
+		ComputerPlayer computer = new ComputerPlayer();
+		Game game = new Game(human, computer);
+		
+		
+		game.startNewGame(computer);
+		computer.setPileForThisTurn(game.getPile());
+		computer.setSticksToTake(6);
+		game.play();		
+				
+		assertEquals("Game over! Winner: Simple computer", game.toString());		
 	}
 
 }
