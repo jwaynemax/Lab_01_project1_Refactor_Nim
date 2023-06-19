@@ -15,7 +15,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
-	 * @param strategy to set the strategy as either Cautious, Greeedy, or Random
+	 * @param strategy to set the strategy as either Cautious, Greedy, or Random
 	 */
 	public ComputerPlayer(NumberOfSticksStrategy strategy) {
 		super(null);
