@@ -18,7 +18,7 @@ public class RandomStrategy implements NumberOfSticksStrategy {
 		if (pileSize <= 0) {
 			throw new IllegalArgumentException("pileSize cannot be less than or equal to 0");
 		}
-		if (pileSize != 1) {
+		if (pileSize != 2) {
 			randomNumber = (int) (Math.random() * pileSize) + 1;
 		}
 		return randomNumber; 
