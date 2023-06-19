@@ -12,8 +12,8 @@ public interface NumberOfSticksStrategy {
 	 * Determine how many sticks method will take
 	 * @precondition pileSize > 0
 	 * @param pileSize determine the size of the pile
-	 * @returns  number of sticks to take, an integer that is > 0 and <= the pile size
+	 * @return  number of sticks to take, an integer that is > 0 and <= the pile size
 	 */
-	void howManySticks(int pileSize);
+	int howManySticks(int pileSize);
 
 }
