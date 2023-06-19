@@ -15,13 +15,13 @@ public class ComputerPlayer extends AbstractPlayer {
 	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
-	 * @param strategy to set the strategy as eithere Cautious, Greeedy, or Random
+	 * @param strategy to set the strategy as either Cautious, Greeedy, or Random
 	 */
 	public ComputerPlayer(NumberOfSticksStrategy strategy) {
 		super(null);
 		setName(NAME);
 		setSticksToTake(0);
-		this.setStrategy(strategy);
+		this.strategy = strategy;
 	}
 	
 	@Override	
@@ -34,7 +34,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#setNumberSticksToTake()
 	 */
 	public void setNumberSticksToTake() {
-		this.setSticksToTake(1);
+		this.setSticksToTake(this.strategy.howManySticks(this.getSticksLeft()));
 	}
 	
 	/**
@@ -42,6 +42,6 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @param strategy to set the strategy as eithere Cautious, Greeedy, or Random
 	 */
 	public void setStrategy(NumberOfSticksStrategy strategy) {
-		setNumberSticksToTake(strategy);
+		this.strategy = strategy;
 	}
 }

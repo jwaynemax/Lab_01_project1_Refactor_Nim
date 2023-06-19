@@ -127,4 +127,12 @@ public abstract class AbstractPlayer implements Player {
 	public void setThePile(Pile thePile) {
 		this.thePile = thePile;
 	}
+	
+	/**
+	 * Get the current size of the pile to pass into howManySticks
+	 * @return the current size of the pile
+	 */
+	public int getSticksLeft() {
+		return this.thePile.getSticksLeft();
+	}
 }
