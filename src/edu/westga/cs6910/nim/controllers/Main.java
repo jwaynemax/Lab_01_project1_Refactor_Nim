@@ -4,7 +4,6 @@ import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
-import edu.westga.cs6910.nim.model.RandomStrategy;
 import edu.westga.cs6910.nim.view.NimPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,7 +20,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("CS6910: Simple Nim");
-		RandomStrategy strategy = new RandomStrategy();
+		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
 
 		NimPane root = new NimPane(theGame);

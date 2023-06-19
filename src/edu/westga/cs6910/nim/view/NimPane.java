@@ -4,6 +4,7 @@ import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.GreedyStrategy;
 import edu.westga.cs6910.nim.model.Player;
+import edu.westga.cs6910.nim.model.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -111,8 +112,9 @@ public class NimPane extends BorderPane {
 
         MenuItem random = new MenuItem("_Random");
         random.setMnemonicParsing(true);
-        random.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN)); 
-        
+        random.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
+        random.setOnAction(new RandomComputerListner());
+
         game.getItems().addAll(exit);
         strategy.getItems().addAll(cautious, greedy, random);
         menuBar.getMenus().addAll(game, strategy);
@@ -149,16 +151,31 @@ public class NimPane extends BorderPane {
 	}
 	
 	/*
-	 * Defines the listener to set strategy to cautious.
+	 * Defines the listener to set strategy to Greedy.
 	 */
 	private class GreedyComputerListner implements EventHandler<ActionEvent> {
 		/*
-		 * Sets strategy to cautious
+		 * Sets strategy to Greedy
 		 */
 		
 		@Override
 		public void handle(ActionEvent event) {
 			GreedyStrategy strategy = new GreedyStrategy();
+			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
+		}
+	}
+	
+	/*
+	 * Defines the listener to set strategy to Random.
+	 */
+	private class RandomComputerListner implements EventHandler<ActionEvent> {
+		/*
+		 * Sets strategy to Random
+		 */
+		
+		@Override
+		public void handle(ActionEvent event) {
+			RandomStrategy strategy = new RandomStrategy();
 			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
 		}
 	}
