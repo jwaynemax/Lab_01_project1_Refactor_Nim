@@ -4,7 +4,7 @@ import edu.westga.cs6910.nim.model.strategy.NumberOfSticksStrategy;
 
 /**
  * Implement the game-play strategy that always ensures the computer player will always select the largest number of sticks possible
- * @author jm00724
+ * @author Justin Maxwell
  * @version Summer 2023
  */
 public class GreedyStrategy implements NumberOfSticksStrategy {
