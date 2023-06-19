@@ -9,6 +9,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -82,14 +85,28 @@ public class NimPane extends BorderPane {
 	
 	private void createMenu() {
 		MenuBar menuBar = new MenuBar();
-		Menu game = new Menu("Game");
-        Menu strategy = new Menu("Exit");
+		Menu game = new Menu("_Game");
+        Menu strategy = new Menu("_Strategy");
+        game.setMnemonicParsing(true);
+        strategy.setMnemonicParsing(true);
         
-        MenuItem close = new MenuItem("Close");
-        MenuItem cautious = new MenuItem("Cautious");
-        MenuItem greedy = new MenuItem("Greedy");
-        MenuItem random = new MenuItem("Random");
-        game.getItems().addAll(close);
+        MenuItem exit = new MenuItem("E_xit");
+        exit.setMnemonicParsing(true);
+        exit.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN)); 
+        
+        MenuItem cautious = new MenuItem("_Cautious");
+        cautious.setMnemonicParsing(true);
+        cautious.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN)); 
+        
+        MenuItem greedy = new MenuItem("Gr_eedy");
+        greedy.setMnemonicParsing(true);
+        greedy.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)); 
+
+        MenuItem random = new MenuItem("_Random");
+        random.setMnemonicParsing(true);
+        random.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN)); 
+        
+        game.getItems().addAll(exit);
         strategy.getItems().addAll(cautious, greedy, random);
         menuBar.getMenus().addAll(game, strategy);
         
