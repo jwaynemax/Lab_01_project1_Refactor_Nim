@@ -1,5 +1,6 @@
 package edu.westga.cs6910.nim.view;
 
+import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.Player;
 import javafx.event.ActionEvent;
@@ -16,7 +17,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 /**
  * Defines a GUI for the 1-pile Nim game. This class was started by CS6910
@@ -83,6 +83,9 @@ public class NimPane extends BorderPane {
 		this.pnContent.setTop(topBox);	
 	}
 	
+	/**
+	 * create a menu to exit the game and select the computer's strategy
+	 */
 	private void createMenu() {
 		MenuBar menuBar = new MenuBar();
 		Menu game = new Menu("_Game");
@@ -97,7 +100,8 @@ public class NimPane extends BorderPane {
         
         MenuItem cautious = new MenuItem("_Cautious");
         cautious.setMnemonicParsing(true);
-        cautious.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN)); 
+        cautious.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN));
+        cautious.setOnAction(new CautiousComputerListner());
         
         MenuItem greedy = new MenuItem("Gr_eedy");
         greedy.setMnemonicParsing(true);
@@ -115,16 +119,30 @@ public class NimPane extends BorderPane {
 	}
 	
 	/*
-	 * Defines the listener for human player first button.
+	 * Defines the listener to exit the game.
 	 */
 	private class CloseApp implements EventHandler<ActionEvent> {
 		/*
-		 * Sets up user interface and starts a new game. Event handler for a click in
-		 * the human player button.
+		 * exits the game
 		 */
 		@Override
 		public void handle(ActionEvent event) {
 			System.exit(0);
+		}
+	}
+	
+	/*
+	 * Defines the listener to set strategy to cautious.
+	 */
+	private class CautiousComputerListner implements EventHandler<ActionEvent> {
+		/*
+		 * Sets strategy to cautious
+		 */
+		
+		@Override
+		public void handle(ActionEvent event) {
+			CautiousStrategy strategy = new CautiousStrategy();
+			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
 		}
 	}
 	
