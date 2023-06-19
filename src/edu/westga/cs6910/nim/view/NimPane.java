@@ -2,6 +2,7 @@ package edu.westga.cs6910.nim.view;
 
 import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.Game;
+import edu.westga.cs6910.nim.model.GreedyStrategy;
 import edu.westga.cs6910.nim.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -105,7 +106,8 @@ public class NimPane extends BorderPane {
         
         MenuItem greedy = new MenuItem("Gr_eedy");
         greedy.setMnemonicParsing(true);
-        greedy.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)); 
+        greedy.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
+        greedy.setOnAction(new GreedyComputerListner());
 
         MenuItem random = new MenuItem("_Random");
         random.setMnemonicParsing(true);
@@ -142,6 +144,21 @@ public class NimPane extends BorderPane {
 		@Override
 		public void handle(ActionEvent event) {
 			CautiousStrategy strategy = new CautiousStrategy();
+			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
+		}
+	}
+	
+	/*
+	 * Defines the listener to set strategy to cautious.
+	 */
+	private class GreedyComputerListner implements EventHandler<ActionEvent> {
+		/*
+		 * Sets strategy to cautious
+		 */
+		
+		@Override
+		public void handle(ActionEvent event) {
+			GreedyStrategy strategy = new GreedyStrategy();
 			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
 		}
 	}

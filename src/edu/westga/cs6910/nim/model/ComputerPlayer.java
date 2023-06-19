@@ -39,7 +39,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	
 	/**
 	 * Set the strategy as passed in by the game
-	 * @param strategy to set the strategy as eithere Cautious, Greeedy, or Random
+	 * @param strategy to set the strategy as either Cautious, Greedy, or Random
 	 */
 	public void setStrategy(NumberOfSticksStrategy strategy) {
 		this.strategy = strategy;
