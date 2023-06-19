@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Pile;
 
@@ -11,7 +12,8 @@ class ComputerPlayerTakeTurn {
 
 	@Test
 	void testTakeTurn4() {
-		ComputerPlayer computer = new ComputerPlayer();	
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);		
 		Pile pile = new Pile(4);
 		computer.setThePile(pile);
 		computer.setSticksToTake(1);
@@ -21,7 +23,8 @@ class ComputerPlayerTakeTurn {
 	
 	@Test
 	void testTakeTurn1000() {
-		ComputerPlayer computer = new ComputerPlayer();	
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);		
 		Pile pile = new Pile(1000);
 		computer.setThePile(pile);
 		computer.setSticksToTake(999);
@@ -31,7 +34,8 @@ class ComputerPlayerTakeTurn {
 	
 	@Test
 	void testTakeTurn2() {
-		ComputerPlayer computer = new ComputerPlayer();	
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		Pile pile = new Pile(2);
 		computer.setThePile(pile);
 		computer.setSticksToTake(1);

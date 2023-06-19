@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
@@ -12,7 +13,8 @@ class GameWhenGetCurrentPlayer {
 
 	@Test
 	void  testStartingANewGameWithHumanAsCurrentPlayer() {
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		HumanPlayer human = new HumanPlayer("Human");
 		Game game = new Game(human, computer);
 		
@@ -23,7 +25,8 @@ class GameWhenGetCurrentPlayer {
 	
 	@Test
 	void  testStartingANewGameWithComputerAsCurrentPlayer() {
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		HumanPlayer human = new HumanPlayer("Human");
 		Game game = new Game(human, computer);
 		
@@ -34,7 +37,8 @@ class GameWhenGetCurrentPlayer {
 	
 	@Test
 	void  testGetCurrentPlayerAfterSwappingTurn() {
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		HumanPlayer human = new HumanPlayer("Human");
 		Game game = new Game(human, computer);
 		

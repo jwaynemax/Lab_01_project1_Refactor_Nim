@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
@@ -12,7 +13,8 @@ class GameWhenGetIsGameOver {
 
 	@Test
 	void  testBeforeGameStartsIsNotOver() {
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		HumanPlayer human = new HumanPlayer("Human");
 		Game game = new Game(human, computer);
 		
@@ -22,7 +24,8 @@ class GameWhenGetIsGameOver {
 	@Test
 	void  testGameIsOver() {
 		HumanPlayer human = new HumanPlayer("Human");
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		Game game = new Game(human, computer);
 		
 		
@@ -37,7 +40,8 @@ class GameWhenGetIsGameOver {
 	@Test
 	void  testGameIsOverToString() {
 		HumanPlayer human = new HumanPlayer("Human");
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		Game game = new Game(human, computer);
 		
 		

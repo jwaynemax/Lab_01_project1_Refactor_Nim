@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
@@ -13,7 +14,8 @@ class GameWhenCreateNewGame {
 	@Test
 	void testNewGameGetHuman() {
 		HumanPlayer human = new HumanPlayer("Human");
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		Game game = new Game(human, computer);
 		
 		assertEquals("Human", game.getHumanPlayer().getName());		
@@ -22,7 +24,8 @@ class GameWhenCreateNewGame {
 	@Test
 	void testNewGameGetComputer() {
 		HumanPlayer human = new HumanPlayer("Human");
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		Game game = new Game(human, computer);
 		
 		assertEquals("Simple computer", game.getComputerPlayer().getName());		
@@ -31,7 +34,8 @@ class GameWhenCreateNewGame {
 	@Test
 	void testNewGameGetPileSize() {
 		HumanPlayer human = new HumanPlayer("Human");
-		ComputerPlayer computer = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer computer = new ComputerPlayer(strategy);	
 		Game game = new Game(human, computer);
 		
 		assertEquals("Pile size: 7", game.getPile().toString());		

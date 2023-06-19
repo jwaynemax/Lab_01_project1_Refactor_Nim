@@ -27,9 +27,8 @@ public class ComputerPlayer extends AbstractPlayer {
 	@Override	
 	/**
 	 * Implements Player's setNumberSticksToTake() to set the number
-	 * of sticks to 1.
+	 * of sticks to the strategy defined by NumberOfSticksStrategy.
 	 * 
-	 * @ensure  sticksOnThisTurn() == 1
 	 * 
 	 * @see Player#setNumberSticksToTake()
 	 */
