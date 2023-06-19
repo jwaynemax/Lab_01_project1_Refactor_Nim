@@ -14,6 +14,9 @@ public class CautiousStrategy implements NumberOfSticksStrategy {
 	 */
 	@Override
 	public int howManySticks(int pileSize) {
+		if (pileSize <= 0) {
+			throw new IllegalArgumentException("pileSize cannot be less than or equal to 0");
+		}
 		return 1; 
 	}
 
