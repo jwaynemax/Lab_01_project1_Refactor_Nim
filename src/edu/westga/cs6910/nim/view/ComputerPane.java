@@ -58,6 +58,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	@Override
 	public void invalidated(Observable arg0) {
 		if (this.theGame.isGameOver()) {
+			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
 			this.setDisable(true);
 			return;
 		}
