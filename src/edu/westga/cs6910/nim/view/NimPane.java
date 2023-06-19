@@ -4,12 +4,16 @@ import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * Defines a GUI for the 1-pile Nim game. This class was started by CS6910
@@ -24,6 +28,7 @@ public class NimPane extends BorderPane {
 	private ComputerPane pnComputerPlayer;
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
+	private BorderPane menuPane;
 
 	/**
 	 * Creates a pane object to provide the view for the specified Game model
@@ -36,11 +41,14 @@ public class NimPane extends BorderPane {
 	 */
 	public NimPane(Game theGame) {
 		this.theGame = theGame;
-
+		
+		this.menuPane = new BorderPane();
+		this.createMenu();
+		
 		this.pnContent = new BorderPane();
-
+	
 		this.addFirstPlayerChooserPane(theGame);
-
+		
 		HBox leftBox = new HBox();
 		leftBox.getStyleClass().add("pane-border");
 		this.pnHumanPlayer = new HumanPane(theGame);
@@ -58,18 +66,36 @@ public class NimPane extends BorderPane {
 		this.pnComputerPlayer = new ComputerPane(theGame);
 		rightBox.getChildren().add(this.pnComputerPlayer);
 		this.pnContent.setRight(rightBox);
-
+        
 		this.setCenter(this.pnContent);
+		this.menuPane.setCenter(this.pnContent);
+	    this.setCenter(this.menuPane);
 	}
 
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("pane-border");
 		this.pnChooseFirstPlayer = new NewGamePane(theGame);
-		topBox.getChildren().add(this.pnChooseFirstPlayer);
-		this.pnContent.setTop(topBox);
+		topBox.getChildren().addAll(this.pnChooseFirstPlayer);
+		this.pnContent.setTop(topBox);	
 	}
-
+	
+	private void createMenu() {
+		MenuBar menuBar = new MenuBar();
+		Menu game = new Menu("Game");
+        Menu strategy = new Menu("Exit");
+        
+        MenuItem close = new MenuItem("Close");
+        MenuItem cautious = new MenuItem("Cautious");
+        MenuItem greedy = new MenuItem("Greedy");
+        MenuItem random = new MenuItem("Random");
+        game.getItems().addAll(close);
+        strategy.getItems().addAll(cautious, greedy, random);
+        menuBar.getMenus().addAll(game, strategy);
+        
+        this.menuPane.setTop(menuBar);
+	}
+	
 	/*
 	 * Defines the panel in which the user selects which Player plays first.
 	 */
