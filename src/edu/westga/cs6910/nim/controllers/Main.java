@@ -22,7 +22,6 @@ public class Main extends Application {
 		primaryStage.setTitle("CS6910: Simple Nim");
 		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
-
 		NimPane root = new NimPane(theGame);
 		Scene scene = new Scene(root, 700, 200);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

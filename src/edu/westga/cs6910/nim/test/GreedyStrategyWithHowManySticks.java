@@ -5,11 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.nim.model.CautiousStrategy;
-import edu.westga.cs6910.nim.model.ComputerPlayer;
-import edu.westga.cs6910.nim.model.Game;
-import edu.westga.cs6910.nim.model.GreedyStrategy;
-import edu.westga.cs6910.nim.model.HumanPlayer;
-import edu.westga.cs6910.nim.model.Pile;
 
 class GreedyStrategyWithHowManySticks {
 
