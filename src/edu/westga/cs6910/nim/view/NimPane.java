@@ -93,6 +93,7 @@ public class NimPane extends BorderPane {
         MenuItem exit = new MenuItem("E_xit");
         exit.setMnemonicParsing(true);
         exit.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN)); 
+        exit.setOnAction(new CloseApp());
         
         MenuItem cautious = new MenuItem("_Cautious");
         cautious.setMnemonicParsing(true);
@@ -111,6 +112,20 @@ public class NimPane extends BorderPane {
         menuBar.getMenus().addAll(game, strategy);
         
         this.menuPane.setTop(menuBar);
+	}
+	
+	/*
+	 * Defines the listener for human player first button.
+	 */
+	private class CloseApp implements EventHandler<ActionEvent> {
+		/*
+		 * Sets up user interface and starts a new game. Event handler for a click in
+		 * the human player button.
+		 */
+		@Override
+		public void handle(ActionEvent event) {
+			System.exit(0);
+		}
 	}
 	
 	/*
@@ -184,5 +199,6 @@ public class NimPane extends BorderPane {
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
 		}
+		
 	}
 }
