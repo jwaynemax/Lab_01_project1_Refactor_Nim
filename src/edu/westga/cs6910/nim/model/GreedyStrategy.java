@@ -18,7 +18,10 @@ public class GreedyStrategy implements NumberOfSticksStrategy {
 			throw new IllegalArgumentException("pileSize cannot be less than or equal to 0");
 		}
 		
-		return pileSize - 1; 
+		if (pileSize > 3) {
+			return 3;
+		} else {
+			return pileSize  - 1;
+		}		
 	}
-
 }
