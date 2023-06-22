@@ -1,10 +1,10 @@
 package edu.westga.cs6910.nim.view;
 
-import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.Game;
-import edu.westga.cs6910.nim.model.GreedyStrategy;
 import edu.westga.cs6910.nim.model.Player;
-import edu.westga.cs6910.nim.model.RandomStrategy;
+import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
+import edu.westga.cs6910.nim.model.strategy.GreedyStrategy;
+import edu.westga.cs6910.nim.model.strategy.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;

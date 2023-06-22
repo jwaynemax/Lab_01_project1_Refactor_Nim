@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs6910.nim.model.CautiousStrategy;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
+import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 
 class ComputerPlayerGetAndSetName {
 

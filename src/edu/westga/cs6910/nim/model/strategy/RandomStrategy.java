@@ -1,6 +1,4 @@
-package edu.westga.cs6910.nim.model;
-
-import edu.westga.cs6910.nim.model.strategy.NumberOfSticksStrategy;
+package edu.westga.cs6910.nim.model.strategy;
 
 /**
  * Implement the game-play strategy that returns a random number of sticks to take within the pile range and leaving one stick left
