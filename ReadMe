@@ -1,0 +1,11 @@
+To resolve this comment called out during Lab 03 grading, 'Unfortunately the random strategy still does not function properly for a pile size of 1 or 3,' I've made the following updates to my random strategy class.
+
+For the Random Strategy to ensure the class randomly chooses (with equal likelihood) the number of sticks selected, according to the game's rules ... When it is the computer's turn, 
+
+- IF the pile size is 1 - the computer must take the last stick, The human has developed a winning strategy; hence, the human wins.
+
+- OR IF the pile size is 2 - the computer must take 1 stick, forcing the human to take the last stick. The computer has developed a winning strategy; hence, the computer wins.
+
+- ELSE IF the pile size is 3 - the computer will either randomly take 1 or 2 sticks leaving 1 or 2 left for the human. This ensures there is equal likelihood the computer or human could win (as stated in the instructions).
+
+- ELSE the pile size is > 3 - the computer will randomly select a stick between 1 and 3. At least 1 stick must be drawn during each turn, but no more than 3 can be taken in a single turn.
