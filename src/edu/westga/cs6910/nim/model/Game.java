@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class Game implements Observable {
 	/** Constant to define the initial pile size */
-	public static final int INITIAL_PILE_SIZE = 7;
+	public static final int INITIAL_PILE_SIZE = 4;
 
 	/**
 	 * Constant to define the maximum number of sticks to be removed per turn
