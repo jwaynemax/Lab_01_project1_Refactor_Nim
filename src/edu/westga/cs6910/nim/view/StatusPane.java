@@ -1,13 +1,19 @@
 package edu.westga.cs6910.nim.view;
 
+import edu.westga.cs6910.nim.controllers.Main;
+import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
+import edu.westga.cs6910.nim.model.HumanPlayer;
+import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  * Defines the panel that displays either the number of sticks left on the
@@ -70,8 +76,16 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
-			 //this.theGame.startNewGame(this.theGame.getComputerPlayer());
-			System.out.println("Game is over");
+//			System.out.println("New Game"); 
+//			CautiousStrategy strategy = new CautiousStrategy();
+//			Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
+//			NimPane root = new NimPane(theGame);
+//			Stage primaryStage = new Stage();
+//			
+//			Main main = new Main();
+//			main.start(primaryStage);
+			//StatusPane.this.theGame.startNewGame(StatusPane.this.theGame.getComputerPlayer());
+			
 		}
 	}
 }

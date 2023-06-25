@@ -17,8 +17,10 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
+	
 	@Override
 	public void start(Stage primaryStage) {
+		
 		primaryStage.setTitle("CS6910: Simple Nim");
 		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
