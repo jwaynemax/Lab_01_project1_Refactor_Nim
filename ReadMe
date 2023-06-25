@@ -1,4 +1,12 @@
-To resolve this comment called out during Lab 03 grading, 'Unfortunately the random strategy still does not function properly for a pile size of 1 or 3,' I've made the following updates to my random strategy class.
+Greedy Strategy:
+For the Greedy Strategy, when it's the computer's turn,
+
+- IF the pile size is > 3, the computer will take the max # of sticks possible per turn, 3
+- ELSE if the pile size is 1, the human has a winning strategy, and the computer will take the last stick. The human wins.
+- ELSE the computer will take all but the last stick (a scenario where the pile size is 2). In this scenario the computer has developed a winning strategy and leaves the last stick for the human to take.
+
+
+Random Strategy:
 
 For the Random Strategy to ensure the class randomly chooses (with equal likelihood) the number of sticks selected, according to the game's rules ... When it is the computer's turn, 
 

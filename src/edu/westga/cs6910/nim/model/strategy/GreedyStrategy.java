@@ -18,6 +18,8 @@ public class GreedyStrategy implements NumberOfSticksStrategy {
 		
 		if (pileSize > 3) {
 			return 3;
+		} else if (pileSize == 1) {
+			return 1;
 		} else {
 			return pileSize  - 1;
 		}		
