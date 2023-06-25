@@ -3,6 +3,9 @@ package edu.westga.cs6910.nim.view;
 import edu.westga.cs6910.nim.model.Game;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -16,6 +19,7 @@ import javafx.scene.layout.GridPane;
 public class StatusPane extends GridPane implements InvalidationListener {
 	private Game theGame;
 	private Label lblStatus;
+	private Button btnRestartGame;
 	
 	/**
 	 * Creates a new status pane that observes the specified game. 
@@ -38,9 +42,36 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		this.lblStatus = new Label(this.theGame.toString());
 		this.add(this.lblStatus, 0, 1);
 	}
+	
+	private void restartGame() {
+		this.btnRestartGame = new Button("Restart");
+		this.btnRestartGame.setOnAction(new RestartGameListner());
+		this.add(this.btnRestartGame, 0, 2);
+	}
 
 	@Override
 	public void invalidated(Observable observable) {
 		this.lblStatus.setText(this.theGame.toString());
+		if (this.theGame.isGameOver()) {
+			this.restartGame();
+		}
+	}
+	
+	/* 
+	 * Defines the listener for takeTurnButton.
+	 */
+	private class RestartGameListner implements EventHandler<ActionEvent> {
+
+		/* 
+		 * Tells the Game to have its current player (i.e., the computer player)
+		 * take its turn.	
+		 * 
+		 * @see javafx.event.EventHandler#handle(T-extends-javafx.event.Event)
+		 */
+		@Override
+		public void handle(ActionEvent arg0) {
+			 //this.theGame.startNewGame(this.theGame.getComputerPlayer());
+			System.out.println("Game is over");
+		}
 	}
 }
