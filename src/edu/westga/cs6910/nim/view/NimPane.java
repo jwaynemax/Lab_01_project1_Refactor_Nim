@@ -218,6 +218,11 @@ public class NimPane extends BorderPane {
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
 			
+			this.randomFirstPlayer();
+			
+		}
+		
+		private void randomFirstPlayer() {
 			int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
 			
 			if (randomNumber == 1) {
@@ -235,7 +240,6 @@ public class NimPane extends BorderPane {
 					humanFirstListener.handle(null); 
 		        });
 			}
-			
 		}
 
 		/*
