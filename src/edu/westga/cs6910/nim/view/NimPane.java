@@ -224,11 +224,10 @@ public class NimPane extends BorderPane {
 		
 		private void randomFirstPlayer() {
 			int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
-			
+						
 			if (randomNumber == 1) {
 				this.radComputerPlayer.setSelected(true);
 				NimPane.this.stage.setOnShown(event -> {
-					System.out.println("works");
 					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
 					computerFirstListener.handle(null); 
 		        });
@@ -252,7 +251,6 @@ public class NimPane extends BorderPane {
 			 * click in the computerPlayerButton.
 			 */
 			public void handle(ActionEvent arg0) {
-				System.out.println("comp works");
 				NimPane.this.pnComputerPlayer.setDisable(false);
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
@@ -270,8 +268,6 @@ public class NimPane extends BorderPane {
 			 */
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("human works");
-
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.pnHumanPlayer.setDisable(false);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);

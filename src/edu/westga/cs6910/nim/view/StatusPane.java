@@ -76,16 +76,10 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
-//			System.out.println("New Game"); 
-//			CautiousStrategy strategy = new CautiousStrategy();
-//			Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
-//			NimPane root = new NimPane(theGame);
-//			Stage primaryStage = new Stage();
-//			
-//			Main main = new Main();
-//			main.start(primaryStage);
-			//StatusPane.this.theGame.startNewGame(StatusPane.this.theGame.getComputerPlayer());
-			
+			StatusPane.this.theGame.getStage().close();
+			Stage stage = new Stage();
+			Main main = new Main();
+			main.start(stage);			
 		}
 	}
 }

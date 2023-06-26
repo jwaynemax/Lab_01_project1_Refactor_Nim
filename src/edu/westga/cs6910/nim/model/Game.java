@@ -4,6 +4,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.stage.Stage;
 
 /**
  * Game represents a Nim game with 1 pile of sticks. This class was started by
@@ -27,6 +28,8 @@ public class Game implements Observable {
 	private ObjectProperty<Player> currentPlayerObject;
 
 	private Pile thePile;
+	
+	private Stage stage;
 
 	/**
 	 * Creates a nim Game with the specified Players and a pile of INITIAL_PILE_SIZE
@@ -40,13 +43,14 @@ public class Game implements Observable {
 	 * @ensure humanPlayer().equals(theHuman) && computerPlayer.equals(theComputer)
 	 *         && sticksLeft() == INITIAL_PILE_SIZE
 	 */
-	public Game(HumanPlayer theHuman, ComputerPlayer theComputer) {
+	public Game(HumanPlayer theHuman, ComputerPlayer theComputer, Stage stage) {
 		this.theHuman = theHuman;
 		this.theComputer = theComputer;
 
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
 
 		this.thePile = new Pile(INITIAL_PILE_SIZE);
+		this.stage = stage;
 	}
 
 	/**
@@ -132,6 +136,10 @@ public class Game implements Observable {
 	 */
 	public Pile getPile() {
 		return this.thePile;
+	}
+	
+	public Stage getStage() {
+		return this.stage;
 	}
 
 	/**

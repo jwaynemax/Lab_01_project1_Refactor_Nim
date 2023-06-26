@@ -1,7 +1,7 @@
 Week 04:
 2-Points -- Application randomly selects which player goes first
 	- Removed this.radHumanPlayer.setOnAction(new HumanFirstListener()) and this.radComputerPlayer.setOnAction(new ComputerFirstListener()) from NimPane --> NewGamePane --> buildPane
-	- Added logic to buildPane to randomly generate a 1 or 2 on page load
+	- Added logic to buildPane to randomly generate a 1 or 2 on page load -- randomFirstPlayer()
 	- IF 1, call ComputerFirstListener
 	- IF 2, call HumanFirstListener
 
