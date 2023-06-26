@@ -47,15 +47,15 @@ public class NimPane extends BorderPane {
 	 * @ensures the pane is displayed properly
 	 */
 	public NimPane(Game theGame) {
-		this.theGame = theGame;
-		
+		this.theGame = theGame;		
 		this.menuPane = new BorderPane();
 		this.createMenu();
 		
 		this.pnContent = new BorderPane();
-	
 		this.addFirstPlayerChooserPane(theGame);
-		
+
+		//IF getFirstPlayer is null -- it's a new game ELSE If get firstPlayer != null then check if it's comp -- IF YES start new game by calling comp event
+				
 		HBox leftBox = new HBox();
 		leftBox.getStyleClass().add("pane-border");
 		this.pnHumanPlayer = new HumanPane(theGame);
@@ -216,8 +216,22 @@ public class NimPane extends BorderPane {
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
 			
-			this.randomFirstPlayer();
-			
+			System.out.println(NimPane.this.pnChooseFirstPlayer);
+			if (NimPane.this.theGame.getFirstPlayer() == null) {
+				this.randomFirstPlayer();
+			} else {
+				if (NimPane.this.theGame.getFirstPlayer() == NimPane.this.theGame.getComputerPlayer()) {
+					this.radComputerPlayer.setSelected(true);
+					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
+					computerFirstListener.handle(null); 
+				} else {
+					this.radHumanPlayer.setSelected(true);
+					HumanFirstListener humanFirstListener = new HumanFirstListener();
+					humanFirstListener.handle(null); 
+				}
+				
+			}
+						
 		}
 		
 		private void randomFirstPlayer() {

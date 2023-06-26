@@ -32,7 +32,6 @@ public class Main extends Application {
 		this.stage.show();
 	}
 	
-
 	/**
 	 * Entry point into the application
 	 * 

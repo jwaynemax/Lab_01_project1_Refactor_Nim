@@ -24,12 +24,10 @@ public class Game implements Observable {
 
 	private HumanPlayer theHuman;
 	private ComputerPlayer theComputer;
-
 	private ObjectProperty<Player> currentPlayerObject;
-
 	private Pile thePile;
-	
 	private Stage stage;
+	private Player firstPlayer;
 
 	/**
 	 * Creates a nim Game with the specified Players and a pile of INITIAL_PILE_SIZE
@@ -64,6 +62,7 @@ public class Game implements Observable {
 	 */
 	public void startNewGame(Player firstPlayer) {
 		this.currentPlayerObject.setValue(firstPlayer);
+		this.firstPlayer = firstPlayer;
 
 		this.thePile = new Pile(INITIAL_PILE_SIZE);
 	}
@@ -140,6 +139,10 @@ public class Game implements Observable {
 	
 	public Stage getStage() {
 		return this.stage;
+	}
+	
+	public Player getFirstPlayer() {
+		return this.firstPlayer;
 	}
 
 	/**

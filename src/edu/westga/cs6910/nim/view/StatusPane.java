@@ -64,22 +64,26 @@ public class StatusPane extends GridPane implements InvalidationListener {
 	}
 	
 	/* 
-	 * Defines the listener for takeTurnButton.
+	 * Defines the listener for btnRestartGame.
 	 */
 	private class RestartGameListner implements EventHandler<ActionEvent> {
 
 		/* 
-		 * Tells the Game to have its current player (i.e., the computer player)
-		 * take its turn.	
+		 * Tells the Game to close the current stage, then create a new Game from Main
 		 * 
 		 * @see javafx.event.EventHandler#handle(T-extends-javafx.event.Event)
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
-			StatusPane.this.theGame.getStage().close();
-			Stage stage = new Stage();
-			Main main = new Main();
-			main.start(stage);			
+			
+			Game theGame = StatusPane.this.theGame;
+			theGame.startNewGame(theGame.getFirstPlayer());
+			NimPane newGame = new NimPane(theGame);
+			
+//			StatusPane.this.theGame.getStage().close();
+//			Stage stage = new Stage();
+//			Main main = new Main();
+//			main.start(stage);			
 		}
 	}
 }
