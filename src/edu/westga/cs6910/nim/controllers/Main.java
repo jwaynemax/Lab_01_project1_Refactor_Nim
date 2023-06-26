@@ -22,15 +22,16 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.stage = primaryStage;
-		primaryStage.setTitle("CS6910: Simple Nim");
+		this.stage.setTitle("CS6910: Simple Nim");
 		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy), this.stage);			
-		NimPane root = new NimPane(theGame, this.stage);
+		NimPane root = new NimPane(theGame);
 		Scene scene = new Scene(root, 700, 200);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		this.stage.setScene(scene);
+		this.stage.show();
 	}
+	
 
 	/**
 	 * Entry point into the application

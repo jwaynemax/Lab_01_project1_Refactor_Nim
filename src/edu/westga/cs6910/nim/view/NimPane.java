@@ -42,14 +42,12 @@ public class NimPane extends BorderPane {
 	 * object.
 	 * 
 	 * @param theGame the domain model object representing the Nim game
-	 * @param stage to get the stage declared in Class Main
 	 * 
 	 * @requires theGame != null
 	 * @ensures the pane is displayed properly
 	 */
-	public NimPane(Game theGame, Stage stage) {
+	public NimPane(Game theGame) {
 		this.theGame = theGame;
-		this.stage = stage;
 		
 		this.menuPane = new BorderPane();
 		this.createMenu();
@@ -227,14 +225,14 @@ public class NimPane extends BorderPane {
 						
 			if (randomNumber == 1) {
 				this.radComputerPlayer.setSelected(true);
-				NimPane.this.stage.setOnShown(event -> {
+				NimPane.this.theGame.getStage().setOnShown(event -> {
 					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
 					computerFirstListener.handle(null); 
 		        });
 				
 			} else {
 				this.radHumanPlayer.setSelected(true);
-				NimPane.this.stage.setOnShown(event -> {
+				NimPane.this.theGame.getStage().setOnShown(event -> {
 					HumanFirstListener humanFirstListener = new HumanFirstListener();
 					humanFirstListener.handle(null); 
 		        });
