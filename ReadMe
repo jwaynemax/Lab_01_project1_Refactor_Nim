@@ -1,3 +1,14 @@
+Week 04:
+2-Points -- Application randomly selects which player goes first
+	- Removed this.radHumanPlayer.setOnAction(new HumanFirstListener()) and this.radComputerPlayer.setOnAction(new ComputerFirstListener()) from NimPane --> NewGamePane --> buildPane
+	- Added logic to buildPane to randomly generate a 1 or 2 on page load
+	- IF 1, call ComputerFirstListener
+	- IF 2, call HumanFirstListener
+
+
+
+Week 03:
+
 Greedy Strategy:
 For the Greedy Strategy, when it's the computer's turn,
 
@@ -17,3 +28,5 @@ For the Random Strategy to ensure the class randomly chooses (with equal likelih
 - ELSE IF the pile size is 3 - the computer will either randomly take 1 or 2 sticks leaving 1 or 2 left for the human. This ensures there is equal likelihood the computer or human could win (as stated in the instructions).
 
 - ELSE the pile size is > 3 - the computer will randomly select a stick between 1 and 3. At least 1 stick must be drawn during each turn, but no more than 3 can be taken in a single turn.
+
+

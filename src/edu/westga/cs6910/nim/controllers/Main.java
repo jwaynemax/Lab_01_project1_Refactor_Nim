@@ -17,14 +17,15 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
+	private Stage stage;
 	
 	@Override
 	public void start(Stage primaryStage) {
-		
+		this.stage = primaryStage;
 		primaryStage.setTitle("CS6910: Simple Nim");
 		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
-		NimPane root = new NimPane(theGame);
+		NimPane root = new NimPane(theGame, this.stage);
 		Scene scene = new Scene(root, 700, 200);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);

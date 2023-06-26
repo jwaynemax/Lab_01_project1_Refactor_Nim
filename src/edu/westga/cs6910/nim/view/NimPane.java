@@ -19,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * Defines a GUI for the 1-pile Nim game. This class was started by CS6910
@@ -34,18 +35,21 @@ public class NimPane extends BorderPane {
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
 	private BorderPane menuPane;
+	private Stage stage;
 
 	/**
 	 * Creates a pane object to provide the view for the specified Game model
 	 * object.
 	 * 
 	 * @param theGame the domain model object representing the Nim game
+	 * @param stage to get the stage declared in Class Main
 	 * 
 	 * @requires theGame != null
 	 * @ensures the pane is displayed properly
 	 */
-	public NimPane(Game theGame) {
+	public NimPane(Game theGame, Stage stage) {
 		this.theGame = theGame;
+		this.stage = stage;
 		
 		this.menuPane = new BorderPane();
 		this.createMenu();
@@ -204,10 +208,8 @@ public class NimPane extends BorderPane {
 			this.setHgap(20);
 
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first ");
-			this.radHumanPlayer.setOnAction(new HumanFirstListener());
-
+			
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
-			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
 
 			ToggleGroup tg = new ToggleGroup();
 			this.radHumanPlayer.setToggleGroup(tg);
@@ -215,6 +217,24 @@ public class NimPane extends BorderPane {
 
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
+			
+			int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
+			
+			if (randomNumber == 1) {
+				this.radComputerPlayer.setSelected(true);
+				NimPane.this.stage.setOnShown(event -> {
+					System.out.println("works");
+					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
+					computerFirstListener.handle(null); 
+		        });
+				
+			} else {
+				this.radHumanPlayer.setSelected(true);
+				NimPane.this.stage.setOnShown(event -> {
+					HumanFirstListener humanFirstListener = new HumanFirstListener();
+					humanFirstListener.handle(null); 
+		        });
+			}
 			
 		}
 
@@ -228,7 +248,7 @@ public class NimPane extends BorderPane {
 			 * click in the computerPlayerButton.
 			 */
 			public void handle(ActionEvent arg0) {
-
+				System.out.println("comp works");
 				NimPane.this.pnComputerPlayer.setDisable(false);
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
@@ -246,6 +266,8 @@ public class NimPane extends BorderPane {
 			 */
 			@Override
 			public void handle(ActionEvent event) {
+				System.out.println("human works");
+
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.pnHumanPlayer.setDisable(false);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
