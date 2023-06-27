@@ -47,13 +47,13 @@ public class NimPane extends BorderPane {
 	 * @ensures the pane is displayed properly
 	 */
 	public NimPane(Game theGame) {
-		this.theGame = theGame;		
+		this.theGame = theGame;
 		this.menuPane = new BorderPane();
 		this.createMenu();
-		
+
 		this.pnContent = new BorderPane();
 		this.addFirstPlayerChooserPane(theGame);
-				
+
 		HBox leftBox = new HBox();
 		leftBox.getStyleClass().add("pane-border");
 		this.pnHumanPlayer = new HumanPane(theGame);
@@ -71,10 +71,10 @@ public class NimPane extends BorderPane {
 		this.pnComputerPlayer = new ComputerPane(theGame);
 		rightBox.getChildren().add(this.pnComputerPlayer);
 		this.pnContent.setRight(rightBox);
-        
+
 		this.setCenter(this.pnContent);
 		this.menuPane.setCenter(this.pnContent);
-	    this.setCenter(this.menuPane);
+		this.setCenter(this.menuPane);
 	}
 
 	private void addFirstPlayerChooserPane(Game theGame) {
@@ -82,46 +82,46 @@ public class NimPane extends BorderPane {
 		topBox.getStyleClass().add("pane-border");
 		this.pnChooseFirstPlayer = new NewGamePane(theGame);
 		topBox.getChildren().addAll(this.pnChooseFirstPlayer);
-		this.pnContent.setTop(topBox);	
+		this.pnContent.setTop(topBox);
 	}
-	
+
 	/**
 	 * create a menu to exit the game and select the computer's strategy
 	 */
 	private void createMenu() {
 		MenuBar menuBar = new MenuBar();
 		Menu game = new Menu("_Game");
-        Menu strategy = new Menu("_Strategy");
-        game.setMnemonicParsing(true);
-        strategy.setMnemonicParsing(true);
-        
-        MenuItem exit = new MenuItem("E_xit");
-        exit.setMnemonicParsing(true);
-        exit.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN)); 
-        exit.setOnAction(new CloseApp());
-        
-        MenuItem cautious = new MenuItem("_Cautious");
-        cautious.setMnemonicParsing(true);
-        cautious.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN));
-        cautious.setOnAction(new CautiousComputerListner());
-        
-        MenuItem greedy = new MenuItem("Gr_eedy");
-        greedy.setMnemonicParsing(true);
-        greedy.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
-        greedy.setOnAction(new GreedyComputerListner());
+		Menu strategy = new Menu("_Strategy");
+		game.setMnemonicParsing(true);
+		strategy.setMnemonicParsing(true);
 
-        MenuItem random = new MenuItem("_Random");
-        random.setMnemonicParsing(true);
-        random.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
-        random.setOnAction(new RandomComputerListner());
+		MenuItem exit = new MenuItem("E_xit");
+		exit.setMnemonicParsing(true);
+		exit.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN));
+		exit.setOnAction(new CloseApp());
 
-        game.getItems().addAll(exit);
-        strategy.getItems().addAll(cautious, greedy, random);
-        menuBar.getMenus().addAll(game, strategy);
-        
-        this.menuPane.setTop(menuBar);
+		MenuItem cautious = new MenuItem("_Cautious");
+		cautious.setMnemonicParsing(true);
+		cautious.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN));
+		cautious.setOnAction(new CautiousComputerListner());
+
+		MenuItem greedy = new MenuItem("Gr_eedy");
+		greedy.setMnemonicParsing(true);
+		greedy.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
+		greedy.setOnAction(new GreedyComputerListner());
+
+		MenuItem random = new MenuItem("_Random");
+		random.setMnemonicParsing(true);
+		random.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
+		random.setOnAction(new RandomComputerListner());
+
+		game.getItems().addAll(exit);
+		strategy.getItems().addAll(cautious, greedy, random);
+		menuBar.getMenus().addAll(game, strategy);
+
+		this.menuPane.setTop(menuBar);
 	}
-	
+
 	/*
 	 * Defines the listener to exit the game.
 	 */
@@ -134,7 +134,7 @@ public class NimPane extends BorderPane {
 			System.exit(0);
 		}
 	}
-	
+
 	/*
 	 * Defines the listener to set strategy to cautious.
 	 */
@@ -142,14 +142,14 @@ public class NimPane extends BorderPane {
 		/*
 		 * Sets strategy to cautious
 		 */
-		
+
 		@Override
 		public void handle(ActionEvent event) {
 			CautiousStrategy strategy = new CautiousStrategy();
 			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
 		}
 	}
-	
+
 	/*
 	 * Defines the listener to set strategy to Greedy.
 	 */
@@ -157,14 +157,14 @@ public class NimPane extends BorderPane {
 		/*
 		 * Sets strategy to Greedy
 		 */
-		
+
 		@Override
 		public void handle(ActionEvent event) {
 			GreedyStrategy strategy = new GreedyStrategy();
 			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
 		}
 	}
-	
+
 	/*
 	 * Defines the listener to set strategy to Random.
 	 */
@@ -172,14 +172,14 @@ public class NimPane extends BorderPane {
 		/*
 		 * Sets strategy to Random
 		 */
-		
+
 		@Override
 		public void handle(ActionEvent event) {
 			RandomStrategy strategy = new RandomStrategy();
 			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
 		}
 	}
-	
+
 	/*
 	 * Defines the panel in which the user selects which Player plays first.
 	 */
@@ -204,7 +204,7 @@ public class NimPane extends BorderPane {
 			this.setHgap(20);
 
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first ");
-			
+
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
 
 			ToggleGroup tg = new ToggleGroup();
@@ -213,42 +213,42 @@ public class NimPane extends BorderPane {
 
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
-						
-			if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().getClass() == NimPane.this.theGame.getComputerPlayer().getClass()) {
-				System.out.println("comp first");
+
+			if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer()
+					.getClass() == NimPane.this.theGame.getComputerPlayer().getClass()) {
 				this.radComputerPlayer.setSelected(true);
 				NimPane.this.theGame.getStage().setOnShown(event -> {
 					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
-					computerFirstListener.handle(null); 
-		        });
-			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().getClass() == NimPane.this.theGame.getHumanPlayer().getClass()) {
-				System.out.println("Human first");
+					computerFirstListener.handle(null);
+				});
+			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer()
+					.getClass() == NimPane.this.theGame.getHumanPlayer().getClass()) {
 				this.radHumanPlayer.setSelected(true);
 				NimPane.this.theGame.getStage().setOnShown(event -> {
 					HumanFirstListener humanFirstListener = new HumanFirstListener();
-					humanFirstListener.handle(null); 
-		        });
+					humanFirstListener.handle(null);
+				});
 			} else {
 				this.randomFirstPlayer();
 			}
 		}
-		
+
 		private void randomFirstPlayer() {
 			int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
-						
+
 			if (randomNumber == 1) {
 				this.radComputerPlayer.setSelected(true);
 				NimPane.this.theGame.getStage().setOnShown(event -> {
 					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
-					computerFirstListener.handle(null); 
-		        });
-				
+					computerFirstListener.handle(null);
+				});
+
 			} else {
 				this.radHumanPlayer.setSelected(true);
 				NimPane.this.theGame.getStage().setOnShown(event -> {
 					HumanFirstListener humanFirstListener = new HumanFirstListener();
-					humanFirstListener.handle(null); 
-		        });
+					humanFirstListener.handle(null);
+				});
 			}
 		}
 
@@ -284,6 +284,6 @@ public class NimPane extends BorderPane {
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
 		}
-		
+
 	}
 }
