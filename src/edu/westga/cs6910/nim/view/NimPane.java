@@ -19,7 +19,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * Defines a GUI for the 1-pile Nim game. This class was started by CS6910
@@ -35,7 +34,6 @@ public class NimPane extends BorderPane {
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
 	private BorderPane menuPane;
-	private Stage stage;
 
 	/**
 	 * Creates a pane object to provide the view for the specified Game model

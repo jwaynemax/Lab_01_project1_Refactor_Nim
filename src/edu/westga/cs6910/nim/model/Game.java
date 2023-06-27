@@ -66,10 +66,18 @@ public class Game implements Observable {
 		this.thePile = new Pile(INITIAL_PILE_SIZE);
 	}
 	
+	/**
+	 * Getter for first player to be referenced in NimPane
+	 * @return firstPlayer
+	 */
 	public Player getFirstPlayer() {
-		return firstPlayer;
+		return this.firstPlayer;
 	}
 	
+	/**
+	 * Setter for firstPlayer to be set in Main
+	 * @param player passed by Main to set the firstPlayer
+	 */
 	public void setFirstPlayer(Player player) {
 		this.firstPlayer = player;
 	}
@@ -144,10 +152,18 @@ public class Game implements Observable {
 		return this.thePile;
 	}
 	
+	/**
+	 * Getter for stage to close the stage and create a new game
+	 * @return stage
+	 */
 	public Stage getStage() {
 		return this.stage;
 	}
 	
+	/**
+	 * Setter for stage to create a new stage
+	 * @param stage to set stage
+	 */
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}

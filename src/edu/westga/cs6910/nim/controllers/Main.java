@@ -38,6 +38,10 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	
+	/**
+	 * Setter to set firstPlayer in Game class
+	 * @param firstPlayer to set firstPlayer field
+	 */
 	public void setFirstPlayer(Player firstPlayer) {
 		this.firstPlayer = firstPlayer;
 	}
