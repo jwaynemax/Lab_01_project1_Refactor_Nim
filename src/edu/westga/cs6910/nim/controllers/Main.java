@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 /**
  * Driver for the application. Creates the GUI and shows it.
  * 
- * @author CS6910
+ * @author Justin Maxwell
  * @version Summer 2023
  *
  */
@@ -23,6 +23,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("CS6910: Simple Nim");
+		
 		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
 		theGame.setStage(primaryStage);

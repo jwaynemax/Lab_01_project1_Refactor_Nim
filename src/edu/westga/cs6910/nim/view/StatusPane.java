@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * Defines the panel that displays either the number of sticks left on the
  * pile or the winner if the game is over.
  * 
- * @author CS6910
+ * @author Justin Maxwell
  * @version Summer 2023
  */
 public class StatusPane extends GridPane implements InvalidationListener {
