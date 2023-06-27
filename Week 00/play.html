@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Strategy</title>
+    <title>Objective & Rules</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,15 +42,19 @@
 
         <div class="container">
             <div class="content">
-                <h1>Menu Items</h1>
-                <h2>1-Pile Strategies:</h2>
-                <ul>
-                    <li><strong>Cautious (CTRL+C)</strong> Computer player will take only 1 stick each round.</li>
-                    <li><strong>Greedy (CTRL+E)</strong> Computer player will leave only 1 stick for the human player to take - and ultimately lose the game.</li>
-                    <li><strong>Random (CTRL+R)</strong> Computer player will take a random stick each round. This round is the most unbiased and least predictable.</li>
-                </ul>
-                <p>At any point, the user can close the window or end the game by selecting Menu >> Game >> Exit (CTRL-X).</p>
-            </div>    
+                <h1>Let's Play!</h1>
+                <h2>Rules</h2>
+                <ol>
+                    <li>Once the game loads, either the 'human first' or 'computer first' will be randomly selected to take the first turn</li>
+                    <li>When it's the human's turn, the player can select between 1 and 3 (Max) sticks to take</li>
+                    <li>Select Take Turn</li>
+                    <li>The computer will then take its turn</li>
+                     <li>**NOTE: By default, the computer's strategy is 'Cautious'. Only one stick will be taken. To have the computer play a different strategy, 
+                     select the strategy menu. See <a href="menu.html">menu</a> for more information on the various strategies the computer can play.</li>
+                   	<li>The player who takes the last stick has lost the game</li>
+                    <li>If you'd like to play again, select 'Restart'. The first player will be the same as the original game.</li>
+                </ol>
+            </div>
         </div>
 
     </main>
