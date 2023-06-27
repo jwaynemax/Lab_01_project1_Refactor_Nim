@@ -65,6 +65,14 @@ public class Game implements Observable {
 
 		this.thePile = new Pile(INITIAL_PILE_SIZE);
 	}
+	
+	public Player getFirstPlayer() {
+		return firstPlayer;
+	}
+	
+	public void setFirstPlayer(Player player) {
+		this.firstPlayer = player;
+	}
 
 	/**
 	 * Conducts a move in the game, allowing the appropriate Player to take a turn.

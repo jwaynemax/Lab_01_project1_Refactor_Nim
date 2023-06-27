@@ -3,6 +3,7 @@ package edu.westga.cs6910.nim.controllers;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
+import edu.westga.cs6910.nim.model.Player;
 import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 import edu.westga.cs6910.nim.view.NimPane;
 import javafx.application.Application;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {	
+	private Player firstPlayer;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -24,11 +26,20 @@ public class Main extends Application {
 		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
 		theGame.setStage(primaryStage);
+		
+		if (this.firstPlayer != null) {
+			theGame.setFirstPlayer(this.firstPlayer);
+		}
+		
 		NimPane root = new NimPane(theGame);
 		Scene scene = new Scene(root, 700, 200);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+	
+	public void setFirstPlayer(Player firstPlayer) {
+		this.firstPlayer = firstPlayer;
 	}
 	
 	/**

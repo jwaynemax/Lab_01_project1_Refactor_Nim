@@ -213,26 +213,24 @@ public class NimPane extends BorderPane {
 
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
-			
-			this.randomFirstPlayer();
-//			if (NimPane.this.theGame.getFirstPlayer() == null) {
-//				this.randomFirstPlayer();
-//			} else {
-//				System.out.println(NimPane.this.theGame.isGameOver());
-//				if (NimPane.this.theGame.getFirstPlayer() == NimPane.this.theGame.getComputerPlayer()) {
-//					this.radComputerPlayer.setSelected(true);
-//					NimPane.this.pnComputerPlayer.setDisable(false);
-//					NimPane.this.pnChooseFirstPlayer.setDisable(true);
-//					NimPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
-//				} else {
-//					this.radHumanPlayer.setSelected(true);
-//					NimPane.this.pnChooseFirstPlayer.setDisable(true);
-//					NimPane.this.pnHumanPlayer.setDisable(false);
-//					NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman); 
-//				}
-//				
-//			}
 						
+			if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().getClass() == NimPane.this.theGame.getComputerPlayer().getClass()) {
+				System.out.println("comp first");
+				this.radComputerPlayer.setSelected(true);
+				NimPane.this.theGame.getStage().setOnShown(event -> {
+					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
+					computerFirstListener.handle(null); 
+		        });
+			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().getClass() == NimPane.this.theGame.getHumanPlayer().getClass()) {
+				System.out.println("Human first");
+				this.radHumanPlayer.setSelected(true);
+				NimPane.this.theGame.getStage().setOnShown(event -> {
+					HumanFirstListener humanFirstListener = new HumanFirstListener();
+					humanFirstListener.handle(null); 
+		        });
+			} else {
+				this.randomFirstPlayer();
+			}
 		}
 		
 		private void randomFirstPlayer() {

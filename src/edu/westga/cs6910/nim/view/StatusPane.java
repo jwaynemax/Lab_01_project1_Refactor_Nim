@@ -2,7 +2,7 @@ package edu.westga.cs6910.nim.view;
 
 import edu.westga.cs6910.nim.controllers.Main;
 import edu.westga.cs6910.nim.model.Game;
-
+import edu.westga.cs6910.nim.model.Player;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -72,9 +72,11 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
+			Player player = StatusPane.this.theGame.getFirstPlayer();
 			StatusPane.this.theGame.getStage().close();
 			Stage stage = new Stage();
 			Main main = new Main();
+			main.setFirstPlayer(player);
 			main.start(stage);
 		}
 	}
