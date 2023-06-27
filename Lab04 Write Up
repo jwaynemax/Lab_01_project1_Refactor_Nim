@@ -17,6 +17,15 @@
 	
 2. Computer automatically takes turn without 'Take Turn' button
 	- 4 points
-	- 
+	- In class ComputerPane, I created a new Label type field for takingTurn. In method buildPane() I set the value of this label to  "Computer is taking turn..." and 
+	specified its placement. Then I set it's default visibility to false. In the Invalidated() method, I refactored the myTurn check to verify, IF it is myTurn, set the
+	label's visibility to true, then add logic for a 'PauseTransition' of 2 seconds, so that the end user understands that the computer is taking their turn. This calls 
+	the existing TakeTurnListener. If it is not the computer's turn, the label for lblNumberTaken should be set to the value of number of sticks taken, and the label for
+	takingTurn set back to invisible. 
+	- The logic for the computer to take it's turn already existed; however, it needed an event to trigger the listener TakeTurnListener. Doing this immediately when it 
+	was the computer's turn wouldn't work, as the method would be called so quickly on the frontend, the ComputerPane would never appear enabled. To resolve this, I added
+	the label which only appears while the Computer is 'taking it's turn' and associated the event to a PauseTransition. This give the human user a chance to process that
+	the computer is actually taking it's turn.
+	
 3. Randomly select first player
 	- 2 points
