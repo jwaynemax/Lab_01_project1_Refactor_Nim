@@ -167,7 +167,6 @@ public class Game implements Observable {
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
-	
 
 	/**
 	 * Returns a String representing the pile size, or, if the game is over, the

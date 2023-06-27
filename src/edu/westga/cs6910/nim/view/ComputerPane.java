@@ -12,10 +12,9 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 /**
- * Defines the panel that lets the user tell the computer player to
- * take its turn and that displays the number of sticks the computer
- * player took on its turn.
- * This class was started by CS6910
+ * Defines the panel that lets the user tell the computer player to take its
+ * turn and that displays the number of sticks the computer player took on its
+ * turn. This class was started by CS6910
  * 
  * @author Justin Maxwell
  * @version Summer 2023
@@ -27,70 +26,70 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	private Label takingTurn;
 
 	/**
-	 * Creates a new ComputerPane that observes the specified game. 
+	 * Creates a new ComputerPane that observes the specified game.
 	 * 
-	 * @param theGame	the model object from which this pane gets its data
+	 * @param theGame the model object from which this pane gets its data
 	 * 
-	 * @requires 	theGame != null
+	 * @requires theGame != null
 	 */
 	public ComputerPane(Game theGame) {
 		this.theGame = theGame;
 		this.theGame.addListener(this);
-				
+
 		this.theComputer = this.theGame.getComputerPlayer();
-		
+
 		this.buildPane();
 		this.setDisable(true);
 	}
-	
+
 	private void buildPane() {
 		this.add(new Label("~~ " + this.theComputer.getName() + " ~~"), 0, 0);
-		
+
 		this.add(new Label("Number of sticks taken: "), 0, 1);
-		
+
 		this.lblNumberTaken = new Label(Integer.toString(this.theComputer.getSticksOnThisTurn()));
 		this.add(this.lblNumberTaken, 1, 1);
-		
+
 		this.takingTurn = new Label("Computer is taking turn...");
 		this.add(this.takingTurn, 0, 2);
 		this.takingTurn.setVisible(false);
-		
+
 	}
 
 	@Override
 	public void invalidated(Observable arg0) {
-		
+
 		if (this.theGame.isGameOver()) {
 			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
 			this.setDisable(true);
 			return;
-		} 
-		
+		}
+
 		boolean myTurn = this.theGame.getCurrentPlayer() == this.theComputer;
-		
+
 		if (myTurn) {
 			this.takingTurn.setVisible(true);
 			PauseTransition pause = new PauseTransition(Duration.seconds(2));
-	        pause.setOnFinished(event -> {
-	        	TakeTurnListener takeTurn = new TakeTurnListener();
-	        	takeTurn.handle(null);
-	        });
-	        pause.play();	
+			pause.setOnFinished(event -> {
+				TakeTurnListener takeTurn = new TakeTurnListener();
+				takeTurn.handle(null);
+			});
+			pause.play();
 		} else {
 			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
 			this.takingTurn.setVisible(false);
-		} 
+		}
 		this.setDisable(!myTurn);
 	}
 
-	/* 
+	/*
 	 * Defines the listener for takeTurnButton.
 	 */
 	private class TakeTurnListener implements EventHandler<ActionEvent> {
 
-		/* 
-		 * Tells the Game to have its current player (i.e., the computer player)
-		 * take its turn.	
+		/*
+		 * Tells the Game to have its current player (i.e., the computer player) take
+		 * its turn.
 		 * 
 		 * @see javafx.event.EventHandler#handle(T-extends-javafx.event.Event)
 		 */
