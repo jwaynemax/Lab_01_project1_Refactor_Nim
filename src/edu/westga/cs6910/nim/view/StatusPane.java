@@ -4,6 +4,7 @@ import edu.westga.cs6910.nim.controllers.Main;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
+import edu.westga.cs6910.nim.model.Player;
 import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -75,15 +76,10 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
-			
-			Game theGame = StatusPane.this.theGame;
-			theGame.startNewGame(theGame.getFirstPlayer());
-			NimPane newGame = new NimPane(theGame);
-			
-//			StatusPane.this.theGame.getStage().close();
-//			Stage stage = new Stage();
-//			Main main = new Main();
-//			main.start(stage);			
+			StatusPane.this.theGame.getStage().close();
+			Stage stage = new Stage();
+			Main main = new Main();
+			main.start(stage);
 		}
 	}
 }

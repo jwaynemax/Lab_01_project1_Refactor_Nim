@@ -68,6 +68,7 @@ public class NimPane extends BorderPane {
 		centerBox.getChildren().add(this.pnGameInfo);
 		this.pnContent.setCenter(centerBox);
 
+		System.out.println("getting called");
 		HBox rightBox = new HBox();
 		rightBox.getStyleClass().add("pane-border");
 		this.pnComputerPlayer = new ComputerPane(theGame);
@@ -216,21 +217,24 @@ public class NimPane extends BorderPane {
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
 			
-			System.out.println(NimPane.this.pnChooseFirstPlayer);
-			if (NimPane.this.theGame.getFirstPlayer() == null) {
-				this.randomFirstPlayer();
-			} else {
-				if (NimPane.this.theGame.getFirstPlayer() == NimPane.this.theGame.getComputerPlayer()) {
-					this.radComputerPlayer.setSelected(true);
-					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
-					computerFirstListener.handle(null); 
-				} else {
-					this.radHumanPlayer.setSelected(true);
-					HumanFirstListener humanFirstListener = new HumanFirstListener();
-					humanFirstListener.handle(null); 
-				}
-				
-			}
+			this.randomFirstPlayer();
+//			if (NimPane.this.theGame.getFirstPlayer() == null) {
+//				this.randomFirstPlayer();
+//			} else {
+//				System.out.println(NimPane.this.theGame.isGameOver());
+//				if (NimPane.this.theGame.getFirstPlayer() == NimPane.this.theGame.getComputerPlayer()) {
+//					this.radComputerPlayer.setSelected(true);
+//					NimPane.this.pnComputerPlayer.setDisable(false);
+//					NimPane.this.pnChooseFirstPlayer.setDisable(true);
+//					NimPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
+//				} else {
+//					this.radHumanPlayer.setSelected(true);
+//					NimPane.this.pnChooseFirstPlayer.setDisable(true);
+//					NimPane.this.pnHumanPlayer.setDisable(false);
+//					NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman); 
+//				}
+//				
+//			}
 						
 		}
 		

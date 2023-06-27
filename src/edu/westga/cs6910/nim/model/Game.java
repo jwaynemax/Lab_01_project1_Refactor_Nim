@@ -41,7 +41,7 @@ public class Game implements Observable {
 	 * @ensure humanPlayer().equals(theHuman) && computerPlayer.equals(theComputer)
 	 *         && sticksLeft() == INITIAL_PILE_SIZE
 	 */
-	public Game(HumanPlayer theHuman, ComputerPlayer theComputer, Stage stage) {
+	public Game(HumanPlayer theHuman, ComputerPlayer theComputer) {
 		this.theHuman = theHuman;
 		this.theComputer = theComputer;
 
@@ -141,9 +141,10 @@ public class Game implements Observable {
 		return this.stage;
 	}
 	
-	public Player getFirstPlayer() {
-		return this.firstPlayer;
+	public void setStage(Stage stage) {
+		this.stage = stage;
 	}
+	
 
 	/**
 	 * Returns a String representing the pile size, or, if the game is over, the
