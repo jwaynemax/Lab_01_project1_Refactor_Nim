@@ -1,16 +1,12 @@
 package edu.westga.cs6910.nim.view;
 
 import edu.westga.cs6910.nim.controllers.Main;
-import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
-import edu.westga.cs6910.nim.model.HumanPlayer;
-import edu.westga.cs6910.nim.model.Player;
-import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;

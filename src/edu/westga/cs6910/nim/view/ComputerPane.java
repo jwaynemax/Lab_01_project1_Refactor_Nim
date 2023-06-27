@@ -2,6 +2,7 @@ package edu.westga.cs6910.nim.view;
 
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
+import javafx.animation.PauseTransition;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -9,6 +10,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 /**
  * Defines the panel that lets the user tell the computer player to
@@ -23,7 +26,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	private Game theGame;
 	private Label lblNumberTaken;
 	private ComputerPlayer theComputer;
-	private Button btnTakeTurn;
+	private Label takingTurn;
 
 	/**
 	 * Creates a new ComputerPane that observes the specified game. 
@@ -50,9 +53,9 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		this.lblNumberTaken = new Label(Integer.toString(this.theComputer.getSticksOnThisTurn()));
 		this.add(this.lblNumberTaken, 1, 1);
 		
-		this.btnTakeTurn = new Button("Take Turn");
-		this.btnTakeTurn.setOnAction(new TakeTurnListener());
-		this.add(this.btnTakeTurn, 0, 2);
+		this.takingTurn = new Label("Computer is taking turn...");
+		this.add(this.takingTurn, 0, 2);
+		this.takingTurn.setVisible(false);
 		
 	}
 
@@ -63,12 +66,22 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
 			this.setDisable(true);
 			return;
-		}
+		} 
 		
 		boolean myTurn = this.theGame.getCurrentPlayer() == this.theComputer;
 		
-		if (!myTurn) {
+		if (myTurn) {
+			this.takingTurn.setVisible(true);
+			PauseTransition pause = new PauseTransition(Duration.seconds(2));
+	        pause.setOnFinished(event -> {
+	        	ComputerPane.this.theComputer.setPileForThisTurn(ComputerPane.this.theGame.getPile());
+				ComputerPane.this.theComputer.setNumberSticksToTake();
+				ComputerPane.this.theGame.play();
+	        });
+	        pause.play();	
+		} else {
 			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
+			this.takingTurn.setVisible(false);
 		} 
 		this.setDisable(!myTurn);
 	}

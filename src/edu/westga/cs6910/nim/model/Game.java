@@ -48,7 +48,6 @@ public class Game implements Observable {
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
 
 		this.thePile = new Pile(INITIAL_PILE_SIZE);
-		this.stage = stage;
 	}
 
 	/**
