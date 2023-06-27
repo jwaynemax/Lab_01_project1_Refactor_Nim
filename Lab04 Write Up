@@ -1,6 +1,22 @@
 1. Restart game using same first player
 	- 4 points
+	- In class StatusPane, in the Invalidated() method, I added a check for IF the game was over. IF YES, call method 'restartGame' which creates a button (btnRestartGame)
+	that when clicked (the event) will call the event handler RestartGameListner. This event first creates a new variable for player by setting it to the current games
+	first player. To get this value, in the Game class, I created a new data field for 'firstPlayer' with getters and setters that is initialized by startNewGame() when
+	called in class NimPane's ComputerFirstListener or HumanFirstListener. I then close the current stage by getting it from class Game's stage data field, which is initialized
+	after a new Game is created in class Main via a setter method. This way, I do not have to pass the stage created in Main as a parameter in Game's constructor. Stage can
+	be retrieved with a getter found in class Game. Next, I declare a new Main method. In my Main class, I've created a new data field, 'firstPlayer' with a setter method
+	to set the value of firstPlayer. Finally, in event handler RestartGameListner, I call main's start() method which will initialize a new game and new scene. I've added
+	an IF condition to check for IF firstPlayer is not null. If false, there is not a prior first player that should be set for the game. If true, in Game >> setFirstPlayer
+	set firstPlayer to the value passed in by the previous game (which has ended). Then, in NimPane >> NewGamePane, I've added a check to verify if Game's firstPlayer
+	data field is not null and check what its class is. If the firstPlayer field has content and is of class ComputerPlayer - call the computerFirstListener. Else, call the
+	HumanFirstListener. 
+	- With this series of checks, I'm able to restart the game by the click of a button via the Main method. This ensures the game's entry point goes through the same flow
+	and a new JavaFX scene is created for each new game. A number of IF statements and methods needed to be added to capture the firstPlayer selected in the first game to make
+	default first player in following games. 
+	
 2. Computer automatically takes turn without 'Take Turn' button
 	- 4 points
+	- 
 3. Randomly select first player
 	- 2 points
