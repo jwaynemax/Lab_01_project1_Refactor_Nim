@@ -29,3 +29,9 @@
 	
 3. Randomly select first player
 	- 2 points
+	- In class NimPane >> NewGamePane, I added a method for randomFirstPlayer(). This will randomly generate either a 1 or 2. If 1, set the radio button to 'Computer'
+	and call the ComputerFirstListener. Else, set the radio button to 'Human' and call the HumanFirstListener. Method randomFirstPlayer() is called in buildPane() and used 
+	in combination with the RestartGame logic mentioned in 1. If this is the first game played, randomFirstPlayer will randomly select who will go first. Else, the 
+	firstPlayer is determined by the previous Game's first player. 
+	- This logic associates the computer player to 1 and human player to 2. The Math.random formula can be used to randomly generate a 1 or 2 to give either the computer
+	or human an equally likely chance of being selected to go first. 
