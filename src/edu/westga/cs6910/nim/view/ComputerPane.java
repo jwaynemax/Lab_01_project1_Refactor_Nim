@@ -74,9 +74,8 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			this.takingTurn.setVisible(true);
 			PauseTransition pause = new PauseTransition(Duration.seconds(2));
 	        pause.setOnFinished(event -> {
-	        	ComputerPane.this.theComputer.setPileForThisTurn(ComputerPane.this.theGame.getPile());
-				ComputerPane.this.theComputer.setNumberSticksToTake();
-				ComputerPane.this.theGame.play();
+	        	TakeTurnListener takeTurn = new TakeTurnListener();
+	        	takeTurn.handle(null);
 	        });
 	        pause.play();	
 		} else {

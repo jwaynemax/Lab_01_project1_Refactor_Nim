@@ -53,8 +53,6 @@ public class NimPane extends BorderPane {
 		
 		this.pnContent = new BorderPane();
 		this.addFirstPlayerChooserPane(theGame);
-
-		//IF getFirstPlayer is null -- it's a new game ELSE If get firstPlayer != null then check if it's comp -- IF YES start new game by calling comp event
 				
 		HBox leftBox = new HBox();
 		leftBox.getStyleClass().add("pane-border");
@@ -68,7 +66,6 @@ public class NimPane extends BorderPane {
 		centerBox.getChildren().add(this.pnGameInfo);
 		this.pnContent.setCenter(centerBox);
 
-		System.out.println("getting called");
 		HBox rightBox = new HBox();
 		rightBox.getStyleClass().add("pane-border");
 		this.pnComputerPlayer = new ComputerPane(theGame);
