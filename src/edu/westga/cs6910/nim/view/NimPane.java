@@ -184,6 +184,7 @@ public class NimPane extends BorderPane {
 	private final class NewGamePane extends GridPane {
 		private RadioButton radHumanPlayer;
 		private RadioButton radComputerPlayer;
+		private RadioButton radRandomPlayer;
 
 		private Game theGame;
 		private Player theHuman;
@@ -204,48 +205,55 @@ public class NimPane extends BorderPane {
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first ");
 
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
-
+			
+			this.radRandomPlayer = new RadioButton("Random first player");
+			
 			ToggleGroup tg = new ToggleGroup();
 			this.radHumanPlayer.setToggleGroup(tg);
 			this.radComputerPlayer.setToggleGroup(tg);
+			this.radRandomPlayer.setToggleGroup(tg);
 
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);
+			this.add(this.radRandomPlayer, 2, 0);
 
-			if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer()
-					.getClass() == NimPane.this.theGame.getComputerPlayer().getClass()) {
-				this.radComputerPlayer.setSelected(true);
-				NimPane.this.theGame.getStage().setOnShown(event -> {
-					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
-					computerFirstListener.handle(null);
-				});
-			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer()
-					.getClass() == NimPane.this.theGame.getHumanPlayer().getClass()) {
-				this.radHumanPlayer.setSelected(true);
-				NimPane.this.theGame.getStage().setOnShown(event -> {
-					HumanFirstListener humanFirstListener = new HumanFirstListener();
-					humanFirstListener.handle(null);
-				});
-			} else {
-				this.randomFirstPlayer();
-			}
+			this.getFirstPlayer();
 		}
-
-		private void randomFirstPlayer() {
-			int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
-
-			if (randomNumber == 1) {
+		
+		private void getFirstPlayer() {
+			if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().equals("computer")) {
 				this.radComputerPlayer.setSelected(true);
 				NimPane.this.theGame.getStage().setOnShown(event -> {
 					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
 					computerFirstListener.handle(null);
 				});
-
-			} else {
+			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().equals("human")) {
 				this.radHumanPlayer.setSelected(true);
 				NimPane.this.theGame.getStage().setOnShown(event -> {
 					HumanFirstListener humanFirstListener = new HumanFirstListener();
 					humanFirstListener.handle(null);
+				});
+			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().equals("random")) {
+				this.radRandomPlayer.setSelected(true);
+				NimPane.this.theGame.getStage().setOnShown(event -> {
+					RandomFirstListener randomFirstListener = new RandomFirstListener();
+					randomFirstListener.handle(null);
+				});
+			} else {
+				this.radHumanPlayer.setOnAction(event -> {
+					NimPane.this.theGame.setFirstPlayer("human");
+					HumanFirstListener humanFirstListener = new HumanFirstListener();
+					humanFirstListener.handle(null);
+				});
+				this.radComputerPlayer.setOnAction(event -> {
+					NimPane.this.theGame.setFirstPlayer("computer");
+					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
+					computerFirstListener.handle(null);
+				});
+				this.radRandomPlayer.setOnAction(event -> {
+					NimPane.this.theGame.setFirstPlayer("random");
+					RandomFirstListener randomFirstListener = new RandomFirstListener();
+					randomFirstListener.handle(null);
 				});
 			}
 		}
@@ -263,7 +271,6 @@ public class NimPane extends BorderPane {
 				NimPane.this.pnComputerPlayer.setDisable(false);
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
-
 			}
 		}
 
@@ -280,6 +287,28 @@ public class NimPane extends BorderPane {
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.pnHumanPlayer.setDisable(false);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
+			}
+		}
+		
+		/*
+		 * Defines the listener for random first player button.
+		 */
+		private class RandomFirstListener implements EventHandler<ActionEvent> {
+			@Override
+			/**
+			 * Randomly select which player will go first.
+			 */
+			public void handle(ActionEvent arg0) {
+				int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
+				if (randomNumber == 1) {
+					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
+					computerFirstListener.handle(null);
+
+				} else {
+					HumanFirstListener humanFirstListener = new HumanFirstListener();
+					humanFirstListener.handle(null);
+				}
+
 			}
 		}
 

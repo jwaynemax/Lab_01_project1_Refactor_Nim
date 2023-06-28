@@ -3,7 +3,6 @@ package edu.westga.cs6910.nim.controllers;
 import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
 import edu.westga.cs6910.nim.model.HumanPlayer;
-import edu.westga.cs6910.nim.model.Player;
 import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 import edu.westga.cs6910.nim.view.NimPane;
 import javafx.application.Application;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
-	private Player firstPlayer;
+	private String firstPlayer;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -44,7 +43,7 @@ public class Main extends Application {
 	 * 
 	 * @param firstPlayer to set firstPlayer field
 	 */
-	public void setFirstPlayer(Player firstPlayer) {
+	public void setFirstPlayer(String firstPlayer) {
 		this.firstPlayer = firstPlayer;
 	}
 
