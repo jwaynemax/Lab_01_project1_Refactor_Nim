@@ -7,7 +7,6 @@ import edu.westga.cs6910.nim.model.strategy.GreedyStrategy;
 import edu.westga.cs6910.nim.model.strategy.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -37,6 +36,7 @@ public class NimPane extends BorderPane {
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
 	private BorderPane menuPane;
+	private GridPane pileSizePane;
 
 	/**
 	 * Creates a pane object to provide the view for the specified Game model
@@ -72,10 +72,13 @@ public class NimPane extends BorderPane {
 		this.pnComputerPlayer = new ComputerPane(theGame);
 		rightBox.getChildren().add(this.pnComputerPlayer);
 		this.pnContent.setRight(rightBox);
-
-		this.setCenter(this.pnContent);
-		this.menuPane.setCenter(this.pnContent);
-		this.setCenter(this.menuPane);
+		
+		this.pileSizePane = new GridPane();
+		this.createPileSize();
+		
+		this.setTop(this.menuPane);
+		this.setCenter(this.pileSizePane);
+		this.setBottom(this.pnContent);
 	}
 
 	private void addFirstPlayerChooserPane(Game theGame) {
@@ -84,6 +87,25 @@ public class NimPane extends BorderPane {
 		this.pnChooseFirstPlayer = new NewGamePane(theGame);
 		topBox.getChildren().addAll(this.pnChooseFirstPlayer);
 		this.pnContent.setTop(topBox);
+	}
+	
+	private void createPileSize() {
+		Label lblPileSize = new Label("Select pile size: ");
+		ComboBox<Integer> cmbPileSize = new ComboBox<Integer>();
+		cmbPileSize.getItems().addAll(7, 14, 21);
+		cmbPileSize.setValue(7);
+		cmbPileSize.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				int pileSize = cmbPileSize.getValue();
+				NimPane.this.theGame.setPileSize(pileSize);
+				NimPane.this.pnGameInfo.update();
+			}
+		});		
+		this.pileSizePane.getStyleClass().add("pane-border");
+		this.pileSizePane.add(lblPileSize, 0, 0);
+		this.pileSizePane.add(cmbPileSize, 1, 0);
+
 	}
 
 	/**
@@ -188,10 +210,7 @@ public class NimPane extends BorderPane {
 		private RadioButton radHumanPlayer;
 		private RadioButton radComputerPlayer;
 		private RadioButton radRandomPlayer;
-		private ComboBox<Integer> cmbPileSize;
-		private Label lblPileSize;
 		
-
 		private Game theGame;
 		private Player theHuman;
 		private Player theComputer;
@@ -206,13 +225,6 @@ public class NimPane extends BorderPane {
 
 		private void buildPane() {
 			this.setHgap(20);
-
-			this.lblPileSize = new Label("Select pile size:");
-			
-			this.cmbPileSize = new ComboBox<Integer>();
-			this.cmbPileSize.getItems().addAll(7, 14, 21);
-			this.cmbPileSize.setValue(7);
-			this.cmbPileSize.setOnAction(new SetPileSize());
 			
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first ");
 
@@ -225,8 +237,6 @@ public class NimPane extends BorderPane {
 			this.radComputerPlayer.setToggleGroup(tg);
 			this.radRandomPlayer.setToggleGroup(tg);
 
-			this.add(this.lblPileSize, 0, 0);
-			this.add(this.cmbPileSize, 0, 1);
 			this.add(this.radHumanPlayer, 1, 0);
 			this.add(this.radComputerPlayer, 2, 0);
 			this.add(this.radRandomPlayer, 3, 0);
@@ -324,15 +334,5 @@ public class NimPane extends BorderPane {
 
 			}
 		}
-		
-		private class SetPileSize implements EventHandler<ActionEvent> {
-			@Override
-			public void handle(ActionEvent arg0) {
-						int pileSize = NewGamePane.this.cmbPileSize.getValue();
-						NimPane.this.theGame.setPileSize(pileSize);
-						NimPane.this.pnGameInfo.update();
-				}
-			}
-
 	}
 }
