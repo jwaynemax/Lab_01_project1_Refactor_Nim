@@ -61,13 +61,9 @@ public class Game implements Observable {
 	 * @ensures whoseTurn().equals(firstPlayer) && sticksLeft() == INITIAL_PILE_SIZE
 	 */
 	public void startNewGame(Player firstPlayer) {
-
 		this.currentPlayerObject.setValue(firstPlayer);
 
 		this.thePile = new Pile(this.INITIAL_PILE_SIZE);
-		this.currentPlayerObject.getValue().setPileForThisTurn(this.thePile);
-		System.out.println(this.currentPlayerObject.getValue().getPileForThisTurn());
-		System.out.println(this.currentPlayerObject.getValue().getSticksOnThisTurn());
 	}
 	
 	/**
@@ -95,7 +91,6 @@ public class Game implements Observable {
 	 * @ensures !whoseTurn().equals(whoseTurn()@prev) && sticksLeft() < sticksLeft()@prev
 	 */
 	public void play() {
-
 		this.currentPlayerObject.getValue().takeTurn();
 		this.swapWhoseTurn();
 
@@ -154,6 +149,15 @@ public class Game implements Observable {
 	 */
 	public Pile getPile() {
 		return this.thePile;
+	}
+	
+	/**
+	 * Returns the Pile used in this Game.
+	 * 
+	 * @return the Pile
+	 */
+	public void setPileSize(int pileSize) {
+		this.thePile = new Pile(pileSize);
 	}
 	
 	/**

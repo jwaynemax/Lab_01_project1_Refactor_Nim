@@ -24,7 +24,7 @@ public abstract class AbstractPlayer implements Player {
 	 * @see Player#setPileForThisTurn(Pile)
 	 * @param aPile to define pile after sticks taken
 	 */	
-	public void setPileForThisTurn(Pile aPile) {
+	public void setPileForThisTurn(Pile aPile) {		
 		this.setThePile(aPile);
 
 	}
@@ -34,7 +34,6 @@ public abstract class AbstractPlayer implements Player {
 	 * @see Player#takeTurn()
 	 */	
 	public void takeTurn() {
-
 		this.getThePile().removeSticks(this.getSticksToTake());
 	}
 	
@@ -46,7 +45,7 @@ public abstract class AbstractPlayer implements Player {
 	 * 
 	 * @see Player#setNumberSticksToTake(int)
 	 */
-	public void setNumberSticksToTake(int number) {
+	public void setNumberSticksToTake(int number) {		
 		this.setSticksToTake(number);
 	}
 	

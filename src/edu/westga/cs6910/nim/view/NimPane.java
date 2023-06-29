@@ -195,13 +195,18 @@ public class NimPane extends BorderPane {
 
 		@Override
 		public void handle(ActionEvent event) {
-			//NimPane.this.theGame.setPileSize();
+			NimPane.this.theGame.setPileSize();
 			NimPane.this.pnChooseFirstPlayer.setDisable(false);
 			NimPane.this.pnHumanPlayer.setDisable(true);
 			NimPane.this.pnComputerPlayer.setDisable(true);
+			NimPane.this.pnChooseFirstPlayer = new NewGamePane(NimPane.this.theGame);
 			NimPane.this.pnGameInfo.restartGame();
-			NimPane.this.pnHumanPlayer.resetNumberToTakeComboBox();
-			((NewGamePane) NimPane.this.pnChooseFirstPlayer).getFirstPlayer();
+			//NimPane.this.pnHumanPlayer.resetNumberToTakeComboBox();
+			//NimPane.this.pnComputerPlayer.resetNumberTaken();
+			//NimPane.this.pnChooseFirstPlayer = new NewGamePane(NimPane.this.theGame);
+			//NimPane.this.addFirstPlayerChooserPane(NimPane.this.theGame);
+			
+			//((NewGamePane) NimPane.this.pnChooseFirstPlayer).getFirstPlayer();
 		}
 	}
 
@@ -245,7 +250,7 @@ public class NimPane extends BorderPane {
 
 			this.getFirstPlayer();
 		}
-		
+
 		public void getFirstPlayer() {
 			if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().equals("computer")) {
 				this.radComputerPlayer.setSelected(true);

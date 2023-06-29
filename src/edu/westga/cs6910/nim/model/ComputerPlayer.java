@@ -22,6 +22,7 @@ public class ComputerPlayer extends AbstractPlayer {
 		setName(NAME);
 		setSticksToTake(0);
 		this.strategy = strategy;
+
 	}
 	
 	@Override	
