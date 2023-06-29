@@ -46,6 +46,7 @@ public class Main extends Application {
 	public void setFirstPlayer(String firstPlayer) {
 		this.firstPlayer = firstPlayer;
 	}
+	
 
 	/**
 	 * Entry point into the application

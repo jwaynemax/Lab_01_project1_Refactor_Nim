@@ -1,6 +1,8 @@
 package edu.westga.cs6910.nim.view;
 
+import edu.westga.cs6910.nim.model.ComputerPlayer;
 import edu.westga.cs6910.nim.model.Game;
+import edu.westga.cs6910.nim.model.HumanPlayer;
 import edu.westga.cs6910.nim.model.Player;
 import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 import edu.westga.cs6910.nim.model.strategy.GreedyStrategy;
@@ -97,6 +99,11 @@ public class NimPane extends BorderPane {
 		exit.setMnemonicParsing(true);
 		exit.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN));
 		exit.setOnAction(new CloseApp());
+		
+		MenuItem restart = new MenuItem("Res_tart");
+		restart.setMnemonicParsing(true);
+		restart.setAccelerator(new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN));
+		restart.setOnAction(new RestartGame());
 
 		MenuItem cautious = new MenuItem("_Cautious");
 		cautious.setMnemonicParsing(true);
@@ -113,7 +120,7 @@ public class NimPane extends BorderPane {
 		random.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
 		random.setOnAction(new RandomComputerListner());
 
-		game.getItems().addAll(exit);
+		game.getItems().addAll(exit, restart);
 		strategy.getItems().addAll(cautious, greedy, random);
 		menuBar.getMenus().addAll(game, strategy);
 
@@ -177,6 +184,25 @@ public class NimPane extends BorderPane {
 			NimPane.this.theGame.getComputerPlayer().setStrategy(strategy);
 		}
 	}
+	
+	/*
+	 * Defines the listener to set Restart the game.
+	 */
+	private class RestartGame implements EventHandler<ActionEvent> {
+		/*
+		 * Sets strategy to restart the game
+		 */
+
+		@Override
+		public void handle(ActionEvent event) {
+//			NimPane.this.pnChooseFirstPlayer.setDisable(false);
+//			NimPane.this.pnContent.setDisable(true);
+//			NimPane.this.pnChooseFirstPlayer = new NewGamePane(NimPane.this.theGame);
+			CautiousStrategy strategy = new CautiousStrategy();
+			NimPane newPane = new NimPane(NimPane.this.theGame);
+
+		}
+	}
 
 	/*
 	 * Defines the panel in which the user selects which Player plays first.
@@ -195,6 +221,7 @@ public class NimPane extends BorderPane {
 
 			this.theHuman = this.theGame.getHumanPlayer();
 			this.theComputer = this.theGame.getComputerPlayer();
+			NimPane.this.pnContent.setDisable(false);
 
 			this.buildPane();
 		}
@@ -220,25 +247,19 @@ public class NimPane extends BorderPane {
 			this.getFirstPlayer();
 		}
 		
-		private void getFirstPlayer() {
+		public void getFirstPlayer() {
 			if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().equals("computer")) {
 				this.radComputerPlayer.setSelected(true);
-				NimPane.this.theGame.getStage().setOnShown(event -> {
-					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
-					computerFirstListener.handle(null);
-				});
+				ComputerFirstListener computerFirstListener = new ComputerFirstListener();
+				computerFirstListener.handle(null);
 			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().equals("human")) {
 				this.radHumanPlayer.setSelected(true);
-				NimPane.this.theGame.getStage().setOnShown(event -> {
-					HumanFirstListener humanFirstListener = new HumanFirstListener();
-					humanFirstListener.handle(null);
-				});
+				HumanFirstListener humanFirstListener = new HumanFirstListener();
+				humanFirstListener.handle(null);
 			} else if (NimPane.this.theGame.getFirstPlayer() != null && NimPane.this.theGame.getFirstPlayer().equals("random")) {
 				this.radRandomPlayer.setSelected(true);
-				NimPane.this.theGame.getStage().setOnShown(event -> {
-					RandomFirstListener randomFirstListener = new RandomFirstListener();
-					randomFirstListener.handle(null);
-				});
+				RandomFirstListener randomFirstListener = new RandomFirstListener();
+				randomFirstListener.handle(null);
 			} else {
 				this.radHumanPlayer.setOnAction(event -> {
 					NimPane.this.theGame.setFirstPlayer("human");
@@ -268,6 +289,7 @@ public class NimPane extends BorderPane {
 			 * click in the computerPlayerButton.
 			 */
 			public void handle(ActionEvent arg0) {
+				System.out.println(NimPane.this.theGame.getFirstPlayer());
 				NimPane.this.pnComputerPlayer.setDisable(false);
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
@@ -284,6 +306,7 @@ public class NimPane extends BorderPane {
 			 */
 			@Override
 			public void handle(ActionEvent event) {
+				System.out.println(NimPane.this.theGame.getFirstPlayer());
 				NimPane.this.pnChooseFirstPlayer.setDisable(true);
 				NimPane.this.pnHumanPlayer.setDisable(false);
 				NimPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
