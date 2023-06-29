@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 public class StatusPane extends GridPane implements InvalidationListener {
 	private Game theGame;
 	private Label lblStatus;
-	private Label lblRestart;
+	private Button btnRestart;
 
 	/**
 	 * Creates a new status pane that observes the specified game.
@@ -44,20 +44,22 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		this.lblStatus = new Label(this.theGame.toString());
 		this.add(this.lblStatus, 0, 1);
 	}
-
+	
+	/**
+	 * Restart game
+	 */
 	public void restartGame() {
-		this.lblStatus.setText(this.theGame.toString());
+		this.btnRestart = new Button("Restart");
+		this.btnRestart.setOnAction(new RestartGameListner());
+		this.add(this.btnRestart, 0, 2);
 	}
 
 	@Override
 	public void invalidated(Observable observable) {
 		this.lblStatus.setText(this.theGame.toString());
-//		if (this.theGame.isGameOver()) {
-//			this.lblRestart = new Label("Select CTRL+T to Restart the Game");
-			//this.add(this.lblRestart, 0, 2);
-//		} else {
-//			this.lblRestart = new Label("");
-//		}
+		if (this.theGame.isGameOver()) {
+			this.restartGame();
+		}
 	}
 
 	/*
