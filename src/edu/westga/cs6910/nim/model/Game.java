@@ -1,6 +1,5 @@
 package edu.westga.cs6910.nim.model;
 
-import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
@@ -155,7 +154,7 @@ public class Game implements Observable {
 	/**
 	 * Returns the Pile used in this Game.
 	 * 
-	 * @return the Pile
+	 * @param pileSize to set the pile
 	 */
 	public void setPileSize(int pileSize) {
 		this.pileSize = pileSize;

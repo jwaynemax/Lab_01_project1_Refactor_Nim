@@ -79,13 +79,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		}
 		this.setDisable(!myTurn);
 	}
-	
-	/**
-	 * Resets the number of sticks taken to 0
-	 */
-	public void resetNumberTaken() {
-		this.lblNumberTaken.setText("0");
-	}
 
 	/*
 	 * Defines the listener for takeTurnButton.
