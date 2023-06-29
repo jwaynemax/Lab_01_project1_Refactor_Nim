@@ -3,14 +3,14 @@
 	- In class StatusPane, in the Invalidated() method, I added a check for IF the game was over. IF YES, call method 'restartGame' which creates a button (btnRestartGame)
 	that when clicked (the event) will call the event handler RestartGameListner. This event first creates a new variable for player by setting it to the current games
 	first player. To get this value, in the Game class, I created a new data field for 'firstPlayer' with getters and setters that is initialized by startNewGame() when
-	called in class NimPane's ComputerFirstListener or HumanFirstListener. I then close the current stage by getting it from class Game's stage data field, which is initialized
+	called in class NimPane's ComputerFirstListener, HumanFirstListener or RandomFirstListener. I then close the current stage by getting it from class Game's stage data field, which is initialized
 	after a new Game is created in class Main via a setter method. This way, I do not have to pass the stage created in Main as a parameter in Game's constructor. Stage can
 	be retrieved with a getter found in class Game. Next, I declare a new Main method. In my Main class, I've created a new data field, 'firstPlayer' with a setter method
 	to set the value of firstPlayer. Finally, in event handler RestartGameListner, I call main's start() method which will initialize a new game and new scene. I've added
 	an IF condition to check for IF firstPlayer is not null. If false, there is not a prior first player that should be set for the game. If true, in Game >> setFirstPlayer
 	set firstPlayer to the value passed in by the previous game (which has ended). Then, in NimPane >> NewGamePane, I've added a check to verify if Game's firstPlayer
-	data field is not null and check what its class is. If the firstPlayer field has content and is of class ComputerPlayer - call the computerFirstListener. Else, call the
-	HumanFirstListener. 
+	data field is not null and check what its previous first player was set too. If the firstPlayer field has content start the new game with either the human, computer, or random selection based
+	off the last games selection.
 	- With this series of checks, I'm able to restart the game by the click of a button via the Main method. This ensures the game's entry point goes through the same flow
 	and a new JavaFX scene is created for each new game. A number of IF statements and methods needed to be added to capture the firstPlayer selected in the first game to make
 	default first player in following games. 
@@ -48,5 +48,12 @@
 		* Label (lblPileSize) and ComboBox (cmbPileSize) added to the GridPane
 	- This logic gives the user ability to play the game with different pile sizes. I implemented this in a different pane so it wasn't disabled in the NewGamePane.
 
-5.  
+5. Help option in menu bar
+	- 2 points
+	- Changes made:
+		* In createMenu() added a new MenuItem for 'help'
+		* When selected, this triggers ShowDirections
+		* INFORMATION alert appears with direction on how to play the game.
+		* User can select OK to hide directions
+	- I implemented the directions as an alert in the help bar so they were available throughout the game. At any point the user can see the directions if they need assistance, not just at the beginning.
 		
