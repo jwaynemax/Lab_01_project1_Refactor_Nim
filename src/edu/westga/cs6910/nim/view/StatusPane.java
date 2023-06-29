@@ -54,9 +54,9 @@ public class StatusPane extends GridPane implements InvalidationListener {
 	@Override
 	public void invalidated(Observable observable) {
 		this.lblStatus.setText(this.theGame.toString());
-		if (this.theGame.isGameOver()) {
-			this.restartGame();
-		}
+//		if (this.theGame.isGameOver()) {
+//			this.restartGame();
+//		}
 	}
 
 	/*

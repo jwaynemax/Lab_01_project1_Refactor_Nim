@@ -52,6 +52,7 @@ public class NimPane extends BorderPane {
 		this.createMenu();
 
 		this.pnContent = new BorderPane();
+		this.pnChooseFirstPlayer = new NewGamePane(theGame);
 		this.addFirstPlayerChooserPane(theGame);
 
 		HBox leftBox = new HBox();
@@ -80,7 +81,7 @@ public class NimPane extends BorderPane {
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("pane-border");
-		this.pnChooseFirstPlayer = new NewGamePane(theGame);
+//		this.pnChooseFirstPlayer = new NewGamePane(theGame);
 		topBox.getChildren().addAll(this.pnChooseFirstPlayer);
 		this.pnContent.setTop(topBox);
 	}
@@ -195,12 +196,18 @@ public class NimPane extends BorderPane {
 
 		@Override
 		public void handle(ActionEvent event) {
+			
+			
+//			NimPane.this.theGame.startNewGame(NimPane.this.theGame.getCurrentPlayer());
+//			System.out.println(NimPane.this.theGame.toString());
 //			NimPane.this.pnChooseFirstPlayer.setDisable(false);
-//			NimPane.this.pnContent.setDisable(true);
-//			NimPane.this.pnChooseFirstPlayer = new NewGamePane(NimPane.this.theGame);
-			CautiousStrategy strategy = new CautiousStrategy();
-			NimPane newPane = new NimPane(NimPane.this.theGame);
-
+//			NimPane.this.pnHumanPlayer.setDisable(true);
+//			NimPane.this.pnComputerPlayer.setDisable(true);
+//			//NimPane.this.pnChooseFirstPlayer = new NewGamePane(NimPane.this.theGame);
+//			NimPane.this.pnGameInfo = new StatusPane(NimPane.this.theGame);
+//			NimPane.this.pnHumanPlayer = new HumanPane(NimPane.this.theGame);
+//			NimPane.this.pnComputerPlayer = new ComputerPane(NimPane.this.theGame);
+//			//System.out.println(NimPane.this.theGame.toString());
 		}
 	}
 
@@ -221,7 +228,7 @@ public class NimPane extends BorderPane {
 
 			this.theHuman = this.theGame.getHumanPlayer();
 			this.theComputer = this.theGame.getComputerPlayer();
-			NimPane.this.pnContent.setDisable(false);
+			//NimPane.this.pnContent.setDisable(false);
 
 			this.buildPane();
 		}
@@ -245,6 +252,12 @@ public class NimPane extends BorderPane {
 			this.add(this.radRandomPlayer, 2, 0);
 
 			this.getFirstPlayer();
+		}
+		
+		public void reset() {
+			this.radHumanPlayer.setSelected(false);
+			this.radComputerPlayer.setSelected(false);
+			this.radRandomPlayer.setSelected(false);	
 		}
 		
 		public void getFirstPlayer() {
