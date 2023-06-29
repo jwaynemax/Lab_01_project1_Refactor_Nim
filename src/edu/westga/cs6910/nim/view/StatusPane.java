@@ -7,6 +7,9 @@ import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -62,7 +65,10 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		}
 	}
 	
-	public void update() {
+	/**
+	 * Update status from user select pile size
+	 */
+	public void updateStatus() {
 		this.lblStatus.setText(this.theGame.toString());
 	}
 

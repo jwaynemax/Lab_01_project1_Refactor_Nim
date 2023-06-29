@@ -7,6 +7,7 @@ import edu.westga.cs6910.nim.model.strategy.GreedyStrategy;
 import edu.westga.cs6910.nim.model.strategy.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -99,13 +100,12 @@ public class NimPane extends BorderPane {
 			public void handle(ActionEvent event) {
 				int pileSize = cmbPileSize.getValue();
 				NimPane.this.theGame.setPileSize(pileSize);
-				NimPane.this.pnGameInfo.update();
+				NimPane.this.pnGameInfo.updateStatus();
 			}
 		});		
 		this.pileSizePane.getStyleClass().add("pane-border");
 		this.pileSizePane.add(lblPileSize, 0, 0);
 		this.pileSizePane.add(cmbPileSize, 1, 0);
-
 	}
 
 	/**
@@ -122,6 +122,11 @@ public class NimPane extends BorderPane {
 		exit.setMnemonicParsing(true);
 		exit.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN));
 		exit.setOnAction(new CloseApp());
+		
+		MenuItem help = new MenuItem("_Help");
+		help.setMnemonicParsing(true);
+		help.setAccelerator(new KeyCodeCombination(KeyCode.H, KeyCombination.CONTROL_DOWN));
+		help.setOnAction(new ShowDirections());
 
 		MenuItem cautious = new MenuItem("_Cautious");
 		cautious.setMnemonicParsing(true);
@@ -138,13 +143,35 @@ public class NimPane extends BorderPane {
 		random.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
 		random.setOnAction(new RandomComputerListner());
 
-		game.getItems().addAll(exit);
+		game.getItems().addAll(exit, help);
 		strategy.getItems().addAll(cautious, greedy, random);
 		menuBar.getMenus().addAll(game, strategy);
 
 		this.menuPane.setTop(menuBar);
 	}
 
+	/*
+	 * Defines the listener to exit the game.
+	 */
+	private class ShowDirections implements EventHandler<ActionEvent> {
+		/*
+		 * exits the game
+		 */
+		@Override
+		public void handle(ActionEvent event) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	        alert.setTitle("Help");
+	        alert.setHeaderText("How to play Nim");
+	        alert.setContentText("1. Select a pile size. The default is 7. \n"
+	        		+ "2. Select the first player. Random first player will always select a random player. \n"
+	        		+ "3. When it's the human's turn, choose between 1 & 3 sticks to take.\n"
+	        		+ "4. The loser takes the last stick. \n"
+	        		+ "5. Change the computer's strategy from the strategy menu.");
+
+	        alert.showAndWait();
+		}
+	}
+	
 	/*
 	 * Defines the listener to exit the game.
 	 */
