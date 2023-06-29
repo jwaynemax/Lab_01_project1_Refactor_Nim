@@ -1,5 +1,6 @@
 package edu.westga.cs6910.nim.model;
 
+import edu.westga.cs6910.nim.model.strategy.CautiousStrategy;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
@@ -28,7 +29,6 @@ public class Game implements Observable {
 	private Pile thePile;
 	private Stage stage;
 	private String firstPlayer;
-	private int pile = 7;
 
 	/**
 	 * Creates a nim Game with the specified Players and a pile of INITIAL_PILE_SIZE
@@ -48,7 +48,7 @@ public class Game implements Observable {
 
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
 
-		this.thePile = new Pile(this.pile);
+		this.thePile = new Pile(this.INITIAL_PILE_SIZE);
 	}
 
 	/**
@@ -61,9 +61,13 @@ public class Game implements Observable {
 	 * @ensures whoseTurn().equals(firstPlayer) && sticksLeft() == INITIAL_PILE_SIZE
 	 */
 	public void startNewGame(Player firstPlayer) {
+
 		this.currentPlayerObject.setValue(firstPlayer);
 
-		this.thePile = new Pile(this.pile);
+		this.thePile = new Pile(this.INITIAL_PILE_SIZE);
+		this.currentPlayerObject.getValue().setPileForThisTurn(this.thePile);
+		System.out.println(this.currentPlayerObject.getValue().getPileForThisTurn());
+		System.out.println(this.currentPlayerObject.getValue().getSticksOnThisTurn());
 	}
 	
 	/**
@@ -168,8 +172,12 @@ public class Game implements Observable {
 		this.stage = stage;
 	}
 	
-	public void setPileSize(int pile) {
-		this.pile = pile;
+	/**
+	 * Resets the initial pile size for a new game
+	 * @param pile to reset initial pile size
+	 */
+	public void setPileSize() {
+		this.thePile = new Pile(this.INITIAL_PILE_SIZE);
 	}
 
 	/**

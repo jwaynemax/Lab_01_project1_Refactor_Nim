@@ -17,7 +17,6 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
-	private String firstPlayer;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -26,27 +25,12 @@ public class Main extends Application {
 		CautiousStrategy strategy = new CautiousStrategy();
 		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
 		theGame.setStage(primaryStage);
-
-		if (this.firstPlayer != null) {
-			theGame.setFirstPlayer(this.firstPlayer);
-		}
-
 		NimPane root = new NimPane(theGame);
 		Scene scene = new Scene(root, 700, 200);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-
-	/**
-	 * Setter to set firstPlayer in Game class
-	 * 
-	 * @param firstPlayer to set firstPlayer field
-	 */
-	public void setFirstPlayer(String firstPlayer) {
-		this.firstPlayer = firstPlayer;
-	}
-	
 
 	/**
 	 * Entry point into the application

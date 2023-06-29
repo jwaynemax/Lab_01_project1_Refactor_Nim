@@ -58,15 +58,13 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 
 	@Override
 	public void invalidated(Observable arg0) {
-
 		if (this.theGame.isGameOver()) {
-			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
+			this.lblNumberTaken.setText("" + ComputerPane.this.theComputer.getSticksOnThisTurn());
 			this.setDisable(true);
 			return;
 		}
 
 		boolean myTurn = this.theGame.getCurrentPlayer() == this.theComputer;
-
 		if (myTurn) {
 			this.takingTurn.setVisible(true);
 			PauseTransition pause = new PauseTransition(Duration.seconds(2));
@@ -76,18 +74,18 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			});
 			pause.play();
 		} else {
-			this.lblNumberTaken.setText(String.valueOf(this.theComputer.getSticksOnThisTurn()));
+			this.lblNumberTaken.setText("" + ComputerPane.this.theComputer.getSticksOnThisTurn());
 			this.takingTurn.setVisible(false);
 		}
 		this.setDisable(!myTurn);
 	}
 	
-//	/**
-//	 * Resets the number of sticks taken to 0
-//	 */
-//	public void resetNumberTaken() {
-//		this.lblNumberTaken.setText("0");
-//	}
+	/**
+	 * Resets the number of sticks taken to 0
+	 */
+	public void resetNumberTaken() {
+		this.lblNumberTaken.setText("0");
+	}
 
 	/*
 	 * Defines the listener for takeTurnButton.
@@ -102,6 +100,8 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
+			System.out.println("getting called");
+
 			if (!ComputerPane.this.theGame.isGameOver()) {
 				ComputerPane.this.theComputer.setPileForThisTurn(ComputerPane.this.theGame.getPile());
 				ComputerPane.this.theComputer.setNumberSticksToTake();
