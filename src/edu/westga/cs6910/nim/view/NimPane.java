@@ -7,6 +7,9 @@ import edu.westga.cs6910.nim.model.strategy.GreedyStrategy;
 import edu.westga.cs6910.nim.model.strategy.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -185,6 +188,9 @@ public class NimPane extends BorderPane {
 		private RadioButton radHumanPlayer;
 		private RadioButton radComputerPlayer;
 		private RadioButton radRandomPlayer;
+		private ComboBox<Integer> cmbPileSize;
+		private Label lblPileSize;
+		
 
 		private Game theGame;
 		private Player theHuman;
@@ -201,6 +207,13 @@ public class NimPane extends BorderPane {
 		private void buildPane() {
 			this.setHgap(20);
 
+			this.lblPileSize = new Label("Select pile size:");
+			
+			this.cmbPileSize = new ComboBox<Integer>();
+			this.cmbPileSize.getItems().addAll(7, 14, 21);
+			this.cmbPileSize.setValue(7);
+			this.cmbPileSize.setOnAction(new SetPileSize());
+			
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first ");
 
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
@@ -212,9 +225,11 @@ public class NimPane extends BorderPane {
 			this.radComputerPlayer.setToggleGroup(tg);
 			this.radRandomPlayer.setToggleGroup(tg);
 
-			this.add(this.radHumanPlayer, 0, 0);
-			this.add(this.radComputerPlayer, 1, 0);
-			this.add(this.radRandomPlayer, 2, 0);
+			this.add(this.lblPileSize, 0, 0);
+			this.add(this.cmbPileSize, 0, 1);
+			this.add(this.radHumanPlayer, 1, 0);
+			this.add(this.radComputerPlayer, 2, 0);
+			this.add(this.radRandomPlayer, 3, 0);
 
 			this.getFirstPlayer();
 		}
@@ -254,25 +269,6 @@ public class NimPane extends BorderPane {
 				});
 			}
 		
-		}
-		
-		private void randomFirstPlayer() {
-			int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
-
-			if (randomNumber == 1) {
-				this.radComputerPlayer.setSelected(true);
-				NimPane.this.theGame.getStage().setOnShown(event -> {
-					ComputerFirstListener computerFirstListener = new ComputerFirstListener();
-					computerFirstListener.handle(null);
-				});
-
-			} else {
-				this.radHumanPlayer.setSelected(true);
-				NimPane.this.theGame.getStage().setOnShown(event -> {
-					HumanFirstListener humanFirstListener = new HumanFirstListener();
-					humanFirstListener.handle(null);
-				});
-			}
 		}
 
 		/*
@@ -328,6 +324,15 @@ public class NimPane extends BorderPane {
 
 			}
 		}
+		
+		private class SetPileSize implements EventHandler<ActionEvent> {
+			@Override
+			public void handle(ActionEvent arg0) {
+						int pileSize = NewGamePane.this.cmbPileSize.getValue();
+						NimPane.this.theGame.setPileSize(pileSize);
+						NimPane.this.pnGameInfo.update();
+				}
+			}
 
 	}
 }

@@ -61,6 +61,10 @@ public class StatusPane extends GridPane implements InvalidationListener {
 			this.restartGame();
 		}
 	}
+	
+	public void update() {
+		this.lblStatus.setText(this.theGame.toString());
+	}
 
 	/*
 	 * Defines the listener for btnRestartGame.
